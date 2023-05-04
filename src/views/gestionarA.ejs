@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Nuevo Asset</title>
+    <style>
+        body {
+            background-color: #c1e1e1;
+        }
+        
+        form {
+            background-color: #f0f7ff;
+            border: 1px solid #d4e4ff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+            margin: 50px auto;
+            max-width: 600px;
+            padding: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        input[type="text"], textarea {
+            border: 1px solid #d4d4d4;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            padding: 10px;
+            width: 100%;
+        }
+        
+        input[type="submit"] {
+            background-color: #4d90fe;
+            border: 1px solid #3079ed;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #357ae8;
+        }
+    </style>
+</head>
+<%- include('./barramenu'); %>
+<body>
+
+    <form action="/GestionarA" method="POST">
+        <label for="id">ID:</label>
+        <input type="text" id="id" name="id" required>
+        
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion" required></textarea>
+        
+        <label for="diaCompra">diaCompra:</label>
+        <input type="text" id="diaCompra" name="diaCompra" required>
+
+        <label for="costo">costo:</label>
+        <input type="text" id="costo" name="costo" required>
+        
+        <label for="lugarCompra">lugarCompra:</label>
+        <input type="text" id="lugarCompra" name="lugarCompra" required>
+
+        <label for="marca">marca:</label>
+        <input type="text" id="marca" name="marca" required>
+
+        <label for="modelo">modelo:</label>
+        <input type="text" id="modelo" name="modelo" required>
+
+        <label for="serial">serial:</label>
+        <input type="text" id="serial" name="serial" required>
+
+        <label for="foto">foto:</label>
+        <input type="text" id="foto" name="foto" required>
+
+
+        <input type="submit" value="Crear">
+    </form>
+</body>
+</html>

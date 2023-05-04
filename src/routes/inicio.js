@@ -1,11 +1,24 @@
 import { Router } from "express" 
-import { slash,renderregister} from "../controllers/index.CO.js";
+import { slash,renderregister,RenderLogin, SendData, cerrarSesion, home, RenderG, SendDatos} from "../controllers/index.CO.js";
+import { logeado, notlogeado } from "../lib/privado.js";
 
 const Inicio = Router();
 
 Inicio.get('/', slash)
 
+Inicio.get('/home', logeado,home)
+
 Inicio.get('/registrar', renderregister)
+
+Inicio.get('/Login',RenderLogin)
+
+Inicio.post('/Login',SendData)
+
+Inicio.get('/cerrar', cerrarSesion);
+
+Inicio.get('/GestionarA',logeado,RenderG)
+
+Inicio.post('/GestionarA',SendDatos)
 
 
 export default Inicio;
