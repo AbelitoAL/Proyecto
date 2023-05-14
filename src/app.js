@@ -7,6 +7,7 @@ import bodyParser from "body-parser";
 import {fileURLToPath} from 'url';
 import passport from 'passport';
 import session from 'express-session';
+import flash from 'connect-flash';
 
 import './lib/passport.js'
 
@@ -27,6 +28,7 @@ app.use(session({
     saveUninitialized: false
 }));
 
+ 
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(bodyParser.json());

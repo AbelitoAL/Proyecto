@@ -8,7 +8,7 @@ passport.use('local.login', new Strategy.Strategy({
     passwordField: 'pass',
     passReqToCallback: true
 }, async (req, UsuI, pass, done) => {
-    try {        
+    try { 
         if (UsuI === "fabio" && pass === "123456789") { // ¿existe algun Usuario?
             return done(null, {id: 1 , name:"fabio"})
         } else {
