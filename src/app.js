@@ -13,13 +13,13 @@ import './lib/passport.js'
 
 
 //como comunicarse con la api:
-fetch("https://reqres.in/api/users?page=2")
+/*fetch("https://reqres.in/api/users?page=2")
     .then((respueta)=> {
         return respueta.json()
     }).then((resp) => {
         console.log(resp)
     })
-
+*/
 const app = express()
 
 app.use(session({

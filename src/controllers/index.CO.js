@@ -1,4 +1,5 @@
 import passport from 'passport';
+import helpers from '../lib/helpers.js';
 
 export const slash = (req, res) => {
     res.render('index.ejs');
@@ -12,8 +13,27 @@ export const slash = (req, res) => {
     res.render('home.ejs');
   };
 
-export const renderregister = (req,res) =>{
-  res.render('formulario.ejs')
+export const renderregister = async(req,res) => {
+  try {
+    const { nombre,email,ci,UsuI,pass } = req.body;  
+    const Npass = await helpers.encriptar(pass) 
+    console.log(Npass)
+    const response = await fetch('http://localhost:5000/api/createuser', {
+      method: 'POST',
+      mode: 'cors', // no-cors, *cors, same-origin
+      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: 'same-origin', // include, *same-origin, omit
+      body: JSON.stringify({ nombre,email,ci,UsuI,Npass }),
+      headers: { 'Content-Type': 'application/json' },
+      redirect: 'follow', // manual, *follow, error
+      referrerPolicy: 'no-referrer',
+    });
+    
+    res.redirect('/Login')
+  } catch (error) {
+    console.error(error);
+    res.send('ERROR');
+  }  
 }
 
 export const RenderLogin = (req,res) =>{

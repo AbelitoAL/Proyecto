@@ -1,5 +1,7 @@
 import passport from 'passport';
 import Strategy from 'passport-local';
+import fetch from "node-fetch";
+import helpers from './helpers.js';
 
 
 //para iniciar sesion
@@ -8,9 +10,20 @@ passport.use('local.login', new Strategy.Strategy({
     passwordField: 'pass',
     passReqToCallback: true
 }, async (req, UsuI, pass, done) => {
-    try { 
-        if (UsuI === "fabio" && pass === "123456789") { // ¿existe algun Usuario?
-            return done(null, {id: 1 , name:"fabio"})
+    try {
+        
+        const response = await fetch(`http://localhost:5000/api/usuar/${UsuI}`,{
+            method: 'GET', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', // include, *same-origin, omit
+        }).then((respueta)=> {
+            return respueta.json()
+        })  
+
+        
+        if (UsuI === response[0].usuario && await helpers.descriptar(pass,response[0].contrasena)) { // ¿existe algun Usuario?
+            return done(null, response[0])
         } else {
             return done(null, false, req.flash('denegado', 'usuario no existe'))
         }
@@ -20,12 +33,20 @@ passport.use('local.login', new Strategy.Strategy({
 }))
 
 passport.serializeUser((user, done) => {
-    done(null, user.id);// mando los datos a las variables globales
+    done(null, user.usuario);// mando los datos a las variables globales
 });
 
 passport.deserializeUser(async (user, done) => {
-    try {        
-        done(null, {id: 1 , name: "fabio"}); // mando los datos a las variables globales
+    try {
+        const response = await fetch(`http://localhost:5000/api/usuar/${user}`,{
+            method: 'GET', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', // include, *same-origin, omit
+        }).then((respueta)=> {
+            return respueta.json()
+        })  
+        done(null, response[0]); // mando los datos a las variables globales
     } catch (e) {
         console.log(e)
     }

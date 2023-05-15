@@ -8,7 +8,7 @@ Inicio.get('/', slash)
 
 Inicio.get('/home', logeado,home)
 
-Inicio.get('/registrar', renderregister)
+Inicio.post('/Register', renderregister)
 
 Inicio.get('/Login',RenderLogin)
 
