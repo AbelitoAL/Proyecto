@@ -10,6 +10,7 @@ import session from 'express-session';
 import flash from 'connect-flash';
 
 import './lib/passport.js'
+import Adm from "./routes/persona.js";
 
 
 //como comunicarse con la api:
@@ -42,5 +43,6 @@ app.use(passport.session());
 app.use(express.static(join(__dirname, 'public')))
 
 app.use(Inicio)
+app.use(Adm)
 
 export default app;
