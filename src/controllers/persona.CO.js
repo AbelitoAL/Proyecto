@@ -1,3 +1,4 @@
+import fetch from "node-fetch";
 export const RenderMuser = (req, res) => {
     res.render('index.ejs');
   };
