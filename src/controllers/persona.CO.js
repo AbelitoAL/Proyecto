@@ -35,7 +35,7 @@ export const RenderMuser = (req, res) => {
         const { ci,nombre, id, celular, email, departamento,direccion,descripcion } = req.body;  
         const Npass = await helpers.encriptar(pass) 
         console.log(Npass)
-        const response = await fetch(`https://apisi2.up.railway.app/api/user/createE`, {
+        const response = await fetch(`http://localhost:5000/api/user/createE`, {
           method: 'POST',
           mode: 'cors', // no-cors, *cors, same-origin
           cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
