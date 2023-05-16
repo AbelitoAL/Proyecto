@@ -19,7 +19,7 @@ export const renderregister = async(req,res) => {
     const { nombre,email,ci,UsuI,pass } = req.body;  
     const Npass = await helpers.encriptar(pass) 
     console.log(Npass)
-    const response = await fetch('http://apisi2-production.up.railway.app/api/createuser', {
+    const response = await fetch('http://apisi2.up.railway.app/api/createuser', {
       method: 'POST',
       mode: 'cors', // no-cors, *cors, same-origin
       cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
