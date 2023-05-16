@@ -21,13 +21,7 @@ export const renderregister = async(req,res) => {
     console.log(Npass)
     const response = await fetch('http://apisi2.up.railway.app/api/createuser', {
       method: 'POST',
-      mode: 'cors', // no-cors, *cors, same-origin
-      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: 'same-origin', // include, *same-origin, omit
-      body: JSON.stringify({ nombre,email,ci,UsuI,Npass }),
-      headers: { 'Content-Type': 'application/json' },
-      redirect: 'follow', // manual, *follow, error
-      referrerPolicy: 'no-referrer',
+      body: JSON.stringify({ nombre,email,ci,UsuI,Npass })
     });
     
     res.redirect('/Login')
