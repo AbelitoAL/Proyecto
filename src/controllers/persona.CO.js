@@ -9,7 +9,7 @@ export const RenderMuser = (req, res) => {
         const Npass = await helpers.encriptar(pass) 
         console.log(Npass)
         const response = await fetch(`https://apisi2.up.railway.app/api/user/${req.user.ci}`, {
-          method: 'PUT',
+          method: 'put',
           mode: 'cors', // no-cors, *cors, same-origin
           cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
           credentials: 'same-origin', // include, *same-origin, omit
@@ -35,8 +35,8 @@ export const RenderMuser = (req, res) => {
         const { ci,nombre, id, celular, email, departamento,direccion,descripcion } = req.body;  
         const Npass = await helpers.encriptar(pass) 
         console.log(Npass)
-        const response = await fetch(`http://localhost:5000/api/user/createE`, {
-          method: 'POST',
+        const response = await fetch(`https://apisi2.up.railway.app/api/user/createE`, {
+          method: 'post',
           mode: 'cors', // no-cors, *cors, same-origin
           cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
           credentials: 'same-origin', // include, *same-origin, omit
@@ -63,7 +63,7 @@ export const RenderMuser = (req, res) => {
         const Npass = await helpers.encriptar(pass) 
         console.log(Npass)
         const response = await fetch(`https://apisi2.up.railway.app/api/user/createE`, {
-          method: 'POST',
+          method: 'post',
           mode: 'cors', // no-cors, *cors, same-origin
           cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
           credentials: 'same-origin', // include, *same-origin, omit
