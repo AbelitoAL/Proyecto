@@ -1,5 +1,6 @@
 import passport from 'passport';
 import helpers from '../lib/helpers.js';
+import fetch from "node-fetch";
 
 export const slash = (req, res) => {
     res.render('index.ejs');
