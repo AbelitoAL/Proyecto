@@ -18,12 +18,10 @@ export const renderregister = async(req,res) => {
   try {
     const { nombre,email,ci,UsuI,pass } = req.body;  
     const Npass = await helpers.encriptar(pass) 
-    console.log(Npass)
-    const response = await fetch('http://apisi2.up.railway.app/api/createuser', {
-      method: 'POST',
+    const response = await fetch('https://apisi2.up.railway.app/api/createuser', {
+      method: 'post',
       body: JSON.stringify({ nombre,email,ci,UsuI,Npass })
-    });
-    
+    });    
     res.redirect('/Login')
   } catch (error) {
     console.error(error);
