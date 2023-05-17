@@ -1,13 +1,12 @@
 import fetch from "node-fetch";
 export const RenderMuser = (req, res) => {
-    res.render('index.ejs');
+    res.render('usuario.ejs');
   };
 
   export const Muser = async(req, res) => {
     try {
-        const { nombre, usuario, direccion, ciudad, celular, email } = req.body;  
-        const Npass = await helpers.encriptar(pass) 
-        console.log(Npass)
+        const { nombre, usuario, direccion, ciudad, celular, email } = req.body
+        console.log(req.body)
         const response = await fetch(`https://apisi2.up.railway.app/api/user/${req.user.ci}`, {
           method: 'put',
           mode: 'cors', // no-cors, *cors, same-origin
@@ -28,14 +27,13 @@ export const RenderMuser = (req, res) => {
 
   export const RenderformE = (req, res) => {
 
-    res.render('index.ejs',{response});
+    res.render('empleado.ejs');
   };
 
   export const createE = async(req, res) => {
     try {
         const { ci,nombre, id, celular, email, departamento,direccion,descripcion } = req.body;  
-        const Npass = await helpers.encriptar(pass) 
-        console.log(Npass)
+        
         const response = await fetch(`https://apisi2.up.railway.app/api/user/createE`, {
           method: 'post',
           mode: 'cors', // no-cors, *cors, same-origin

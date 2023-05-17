@@ -12,7 +12,7 @@ import flash from 'connect-flash';
 import './lib/passport.js'
 import Adm from "./routes/persona.js";
 import Acti from "./routes/activo.js";
-
+import helpers from './lib/helpers.js';
 
 //como comunicarse con la api:
 /*fetch("https://reqres.in/api/users?page=2")
@@ -51,7 +51,7 @@ app.use( async (req, res, next) => {
     
     app.locals.VerP = (!req.isAuthenticated());
     if (req.user) {
-        app.locals.VerAd = helpers.VRolP(req.user.idrol)
+        
                 
     } else {// si no hay mandamos la variable vacia
         app.locals.user = req.user;

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="css/estiloForm.css">
+
+    <!----===== Boxicons CSS ===== -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i&display=swap">
+
+
+    <!--<title>Dashboard Sidebar Menu</title>-->
+</head>
+<body>
+    <%- include('./barramenu'); %>
+    <div id="kt_content" class="content d-flex flex-column flex-column-fluid">
+        <div class="innerMain_content">
+            <div class="container innerMain_container">
+
+                <div class="page-main-heading">
+                    <div class="justify-content-start">
+                        <h1 class="page-title"><i class="bi bi-person"></i> Empleados</h1>
+                    </div>
+                </div>
+
+                <div class="card" id="crop-avatar">
+                    <form Id="profile_form" action="/formEm" autocomplete="off" class="form-horizontal" method="post">
+                        <div class="card-body">
+                            <div class="form_section">
+                                <div class="form-title"><i class='bx bxs-user-plus'></i><span> Agregar un empleado
+                                    </span></div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-md-3 col-xxl-3 col-form-label text-sm-end"
+                                        for="FirstName">Nombre completo</label>
+                                    <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
+                                        <input class="form-control" data-val="true" name="nombre" type="text"
+                                            value="" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-md-3 col-xxl-3 col-form-label text-sm-end" for="ci">Id de
+                                        empleado</label>
+                                    <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
+                                        <input class="form-control" data-val="true" name="id" type="text" value="" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-md-3 col-xxl-3 col-form-label text-sm-end" for="ci">CI de
+                                        empleado</label>
+                                    <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
+                                        <input class="form-control" data-val="true" name="ci" type="text" value="" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-md-3 col-xxl-3 col-form-label text-sm-end"
+                                        for="Title">Dirección</label>
+                                    <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
+                                        <input class="form-control" data-val="true" name="direccion" type="text" value="" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-md-3 col-xxl-3 col-form-label text-sm-end"
+                                        for="Title">Ciudad</label>
+                                    <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
+                                        <input class="form-control" data-val="true" id="ciudad" name="Title" type="text"
+                                            value="" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-md-3 col-xxl-3 col-form-label text-sm-end"
+                                        for="Phone">Teléfono</label>
+                                    <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-text"></span>
+                                            <input placeholder="Teléfono" class="form-control" data-val="true"
+                                                id="Phone" maxlength="20" name="celular" type="tel" value="" />
+                                        </div>
+                                        <span class="field-validation-valid" data-valmsg-for="Phone"
+                                            data-valmsg-replace="true"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-md-3 col-xxl-3 col-form-label text-sm-end"
+                                        for="Email">Correo electrónico</label>
+                                    <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
+                                        <div class="input-group">
+                                            <span class="input-group-text"></i></span>
+                                            <input placeholder="Correo" class="form-control" data-val="true"
+                                                name="email" type="email" value="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-md-3 col-xxl-3 col-form-label text-sm-end"
+                                        for="Title">Departamento</label>
+                                    <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
+                                        <select class="form-control" id="departamento" name="departamento">
+                                            <option value="">Seleccionar departamento</option>
+                                            <option value="option1">Departamento 1</option>
+                                            <option value="option2">Departamento 2</option>
+                                            <option value="option3">Departamento 3</option>
+                                            <option value="option4">Departamento 4</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-md-3 col-xxl-3 col-form-label text-sm-end"
+                                        for="Title">Descripción</label>
+                                    <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
+                                        <textarea class="form-control" cols="20" data-val="true"
+                                            data-val-length="Maximum length is 1000." data-val-length-max="1000"
+                                            id="descripcion" maxlength="1000" name="descripcion" rows="4"></textarea>
+                                        <span class="field-validation-valid" data-valmsg-for="Notes"
+                                            data-valmsg-replace="true"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <p>
+                        <div class="form-group row">
+                            <div class="col-sm-9 offset-sm-3">
+                                <button class="btn btn-primary" type="submit">Agregar empleado</button>
+                                <button class="btn btn-secondary" type="button">Cancelar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

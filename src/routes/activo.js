@@ -1,6 +1,9 @@
 import multer from 'multer'
 import { Router } from "express" 
 import { createActivo } from '../controllers/activo.CO.js';
+import {dirname, join} from 'path';
+import {fileURLToPath} from 'url';
+
 
 const Acti = Router();
 
