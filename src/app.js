@@ -11,6 +11,7 @@ import flash from 'connect-flash';
 
 import './lib/passport.js'
 import Adm from "./routes/persona.js";
+import Acti from "./routes/activo.js";
 
 
 //como comunicarse con la api:
@@ -42,7 +43,24 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(join(__dirname, 'public')))
 
+app.use( async (req, res, next) => {
+    
+    
+    app.locals.VerA = req.isAuthenticated();
+    app.locals.VerAd = false;
+    
+    app.locals.VerP = (!req.isAuthenticated());
+    if (req.user) {
+        app.locals.VerAd = helpers.VRolP(req.user.idrol)
+                
+    } else {// si no hay mandamos la variable vacia
+        app.locals.user = req.user;
+    }    
+    next();
+});
+
 app.use(Inicio)
 app.use(Adm)
+app.use(Acti)
 
 export default app;

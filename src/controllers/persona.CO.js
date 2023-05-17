@@ -21,13 +21,14 @@ export const RenderMuser = (req, res) => {
         
         res.redirect('/home')
       } catch (error) {
-        console.error(error);
-        res.send('ERROR');
+        console.error(error)
+        res.send('ERROR')
       }
   }; 
 
   export const RenderformE = (req, res) => {
-    res.render('index.ejs');
+
+    res.render('index.ejs',{response});
   };
 
   export const createE = async(req, res) => {
