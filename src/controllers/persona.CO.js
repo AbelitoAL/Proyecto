@@ -88,8 +88,7 @@ export const RenderMuser = (req, res) => {
 
   export const AsigAct = async(req, res) => {
     try {
-        const { idActivo, cipersona,fecha } = req.body;  
-        console.log(req.body)
+        const { idActivo, cipersona,fecha } = req.body;          
         const response = await fetch(`https://apisi2.up.railway.app/api/user/createE`, {
           method: 'post',
           mode: 'cors', // no-cors, *cors, same-origin

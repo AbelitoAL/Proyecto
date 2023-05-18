@@ -82,7 +82,7 @@
                                         <td>
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                data-target="#exampleModal" >
+                                                data-target="#exampleModal" data-id="<%= activos[i].id %>"></button>>
                                                 Asignar
                                             </button>
                                         </td>
@@ -137,9 +137,9 @@
                                     <a href="/formEm"><button class="btn btn-primary" type="submit">Nuevo</button></a>
                                 </div>
                             </div><p>
-                                <input type="hidden" value=idActivo id="idActivo">
+                                
                             </p>
-                            <p>Echa un vistazo a la fecha</p>
+                            <p>Echa un vistazo a la fecha </p>
                             <div class="row">
                                 <div class="col-md-5 col-lg-7 col-xxl-6 col-sm-7">
                                     <input type="date" name="fecha" class="form-control">
@@ -150,6 +150,7 @@
                     
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <input type="hidden" name="idActivo" id="activoIdInput">
                         <button class="btn btn-primary" type="submit">Guardar cambios</button>                       
 
                         
@@ -161,7 +162,37 @@
     </form>
                 
 
-
+    <script>
+        $('#exampleModal').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget);
+          var activoId = button.data('id');
+          var modal = $(this);
+          modal.find('#activoId').text(activoId);
+          modal.find('#activoIdInput').val(activoId);
+        });
+    
+        $('#eliminarActivoForm').submit(function(e) {
+          e.preventDefault();
+          var form = $(this);
+          var url = form.attr('action');
+          var activoId = form.find('#activoIdInput').val();
+    
+          $.ajax({
+            type: 'POST',
+            url: url,
+            data: { activoId: activoId },
+            success: function(response) {
+              alert(response);
+              $('#exampleModal').modal('hide'); // Cerrar el modal después de eliminar el activo
+              location.reload(); // Actualizar la página después de eliminar el activo (opcional)
+            },
+            error: function(error) {
+              console.error(error);
+              alert('Error al eliminar el activo');
+            }
+          });
+        });
+      </script>
 </body>
 
 </html>
