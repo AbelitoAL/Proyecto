@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Activos Fijos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F2F8FC;
+            padding: 20px;
+        }
+
+        .table-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .table-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .table-header {
+            font-weight: bold;
+        }
+
+        .table-cell {
+            flex-basis: 12.5%;
+        }
+    </style>
+    <!-- CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-pzjw8f+ua6+1KI6+7X8TXB2ZFpt4Lp6p6L9Jd9qbNo2zB6W8j5+t6d5mxr9yn/c3" crossorigin="anonymous">
+
+    <!-- JavaScript de Bootstrap y jQuery (requerido para el funcionamiento del modal) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-vh8IgNfkmaWpC6Bd4WMLTkbvj8RtbhQQNh4eVUQuKA9ScJN/mWmKn3B+2L7sPOU6"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-pzjw8f+ua6+1KI6+7X8TXB2ZFpt4Lp6p6L9Jd9qbNo2zB6W8j5+t6d5mxr9yn/c3"
+        crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <script type="text/javascript" src="modal.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <%- include('./barramenu'); %>
+        <div class="table-container">
+            <h1>Lista de Ubicaciones de la Empresa</h1>
+
+            <div class="table-row">
+                <div class="table-header">ID</div>
+                <div class="table-header">Sitio</div>
+                <div class="table-header">Localización</div>
+                <div class="table-header">Departamento</div>
+            </div>
+
+            <% for (let i=0; i < ubicacion.length; i++) { %>
+                <div class="table-row">
+                    <div class="table-cell">
+                        <%= ubicacion[i].id %>
+                    </div>
+                    <div class="table-cell">
+                        <%= ubicacion[i].sitio %>
+                    </div>
+                    <div class="table-cell">
+                        <%= ubicacion[i].localizacion %>
+                    </div>
+                    <div class="table-cell">
+                        <%= ubicacion[i].departamento %>
+                    <div class="table-cell">
+                        <form action="/eliminarUbicacion" method="post">
+                            <input type="hidden" name="id" value="<%= ubicacion[i].id %>">
+                            <button>Eliminar</button>
+                        </form>
+                    </div>
+                    <div class="table-cell">
+                        <form action="/renderActualizarUbicacion" method="post">
+                            <input type="hidden" name="id" value="<%= ubicacion[i].id %>">
+                            <input type="hidden" name="sitio" value="<%= ubicacion[i].sitio %>">
+                            <input type="hidden" name="localizacion" value="<%= ubicacion[i].localizacion %>">
+                            <input type="hidden" name="departamento" value="<%= ubicacion[i].departamento %>">
+                            <button>Actualizar</button>
+                        </form>
+                    </div>
+                </div>
+                <% } %>
+        </div>
+</body>
+
+</html>

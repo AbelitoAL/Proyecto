@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Activo</title>
+</head>
+<%- include('./barramenu'); %>
+<body>
+
+    <form action="/actualizarActivo" method="POST">
+        <input type="hidden" name="id" value="<%= id %>">
+
+        
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion" required><%= descripcion %></textarea>
+        
+        <label for="diaCompra">diaCompra:</label>
+        <input type="text" id="diaCompra" name="diaCompra" value="<%= diaCompra %>" required> 
+
+        <label for="costo">costo:</label>
+        <input type="text" id="costo" name="costo" value="<%= costo %>" required>
+        
+        <label for="lugarCompra">lugarCompra:</label>
+        <input type="text" id="lugarCompra" name="lugarCompra" value="<%= lugarCompra %>" required>
+
+        <label for="marca">marca:</label>
+        <input type="text" id="marca" name="marca" value="<%= marca %>" required>
+
+        <label for="modelo">modelo:</label>
+        <input type="text" id="modelo" name="modelo" value="<%= modelo %>" required>
+
+        <label for="serial">serial:</label>
+        <input type="text" id="serial" name="serial" value="<%= serial %>" required>
+
+        <label for="foto">foto:</label>
+        <input type="text" id="foto" name="foto" value="<%= foto %>" required>
+
+
+        <input type="submit" value="Actualizar">
+    </form>
+</body>
+</html>

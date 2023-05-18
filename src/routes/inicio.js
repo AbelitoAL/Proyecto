@@ -6,12 +6,6 @@ const Inicio = Router();
 
 Inicio.get('/', slash)
 
-Inicio.get('/listE', RenderL)
-
-Inicio.post('/DeleteE', DeleteE)
-
-Inicio.post('/Memp', Memp)
-
 Inicio.get('/home', logeado,home)
 
 Inicio.post('/Register', renderregister)

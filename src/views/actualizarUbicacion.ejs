@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Ubicacion</title>
+</head>
+<%- include('./barramenu'); %>
+<body>
+
+    <form action="/actualizarUbicacion" method="POST">
+        <input type="hidden" name="id" value="<%= id %>">
+
+        
+        <label for="sitio">Sitio:</label>
+        <textarea id="sitio" name="sitio" required><%= sitio %></textarea>
+        
+        <label for="localizacion">Localizacion:</label>
+        <input type="text" id="localizacion" name="localizacion" value="<%= localizacion %>" required> 
+
+        <label for="departamento">departamento:</label>
+        <input type="text" id="departamento" name="departamento" value="<%= departamento %>" required>
+        
+
+
+        <input type="submit" value="Actualizar">
+    </form>
+</body>
+</html>

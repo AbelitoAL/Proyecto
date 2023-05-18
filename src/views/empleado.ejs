@@ -101,11 +101,9 @@
                                         for="Title">Departamento</label>
                                     <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
                                         <select class="form-control" id="departamento" name="departamento">
-                                            <option value="">Seleccionar departamento</option>
-                                            <option value="option1">Departamento 1</option>
-                                            <option value="option2">Departamento 2</option>
-                                            <option value="option3">Departamento 3</option>
-                                            <option value="option4">Departamento 4</option>
+                                            <% for (let i=0; i < ubicaciones.length; i++) { %>
+                                                <option value="<%= ubicaciones[i].id%>"><%= ubicaciones[i].departamento%></option>
+                                                <% }%>
                                         </select>
                                     </div>
                                 </div>

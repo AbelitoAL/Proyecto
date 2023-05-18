@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="card" id="crop-avatar">
-                    <form Id="profile_form" action="/formEm" autocomplete="off" class="form-horizontal" method="post">
+                    <form Id="profile_form" action="/ModEmp" autocomplete="off" class="form-horizontal" method="post">
                         <div class="card-body">
                             <div class="form_section">
                                 <div class="form-title"><i class='bx bxs-user-plus'></i><span> Agregar un empleado
@@ -40,7 +40,7 @@
                                         for="FirstName">Nombre completo</label>
                                     <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
                                         <input class="form-control" data-val="true" name="nombre" type="text"
-                                            value="" />
+                                            value="<%= nombre %>" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -54,7 +54,7 @@
                                     <label class="col-sm-3 col-md-3 col-xxl-3 col-form-label text-sm-end" for="ci">CI de
                                         empleado</label>
                                     <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
-                                        <input class="hidden" data-val="true" name="ciAnt" type="text" value="<%= ci %>" />
+                                        <input type="hidden" name="ciAnt" value="<%= ci %>">
                                         <input class="form-control" data-val="true" name="ci" type="text" value="<%= ci %>" />
                                     </div>
                                 </div>
@@ -102,11 +102,9 @@
                                         for="Title">Departamento</label>
                                     <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
                                         <select class="form-control" id="departamento" name="departamento">
-                                            <option value="">Seleccionar departamento</option>
-                                            <option value="option1">Departamento 1</option>
-                                            <option value="option2">Departamento 2</option>
-                                            <option value="option3">Departamento 3</option>
-                                            <option value="option4">Departamento 4</option>
+                                            <% for (let i=0; i < ubicaciones.length; i++) { %>
+                                            <option value="<%= ubicaciones[i].id%>"><%= ubicaciones[i].departamento%></option>
+                                            <% }%>
                                         </select>
                                     </div>
                                 </div>

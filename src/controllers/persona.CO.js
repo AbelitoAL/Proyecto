@@ -24,9 +24,16 @@ export const RenderMuser = (req, res) => {
       }
   }; 
 
-  export const RenderformE = (req, res) => {
-
-    res.render('empleado.ejs');
+  export const RenderformE = async(req, res) => {
+    const ubicaciones = await fetch(`https://apisi2.up.railway.app/api/ubi`,{
+      method: 'get', // *GET, POST, PUT, DELETE, etc.
+      mode: 'cors', // no-cors, *cors, same-origin
+      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: 'same-origin', // include, *same-origin, omit
+  }).then((respueta)=> {
+      return respueta.json()
+  }) 
+    res.render('empleado.ejs',{ubicaciones});
   };
 
   export const createE = async(req, res) => {
@@ -52,7 +59,8 @@ export const RenderMuser = (req, res) => {
   };
 
   export const RenderAs = async(req, res) => {
-    const activos = await fetch(`https://apisi2.up.railway.app/api/acti`,{
+    try {
+      const activos = await fetch(`https://apisi2.up.railway.app/api/Gactivo`,{
             method: 'get', // *GET, POST, PUT, DELETE, etc.
             mode: 'cors', // no-cors, *cors, same-origin
             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -61,7 +69,7 @@ export const RenderMuser = (req, res) => {
             return respueta.json()
         }) 
 
-        const empleados = await fetch(`https://apisi2.up.railway.app/api/acti`,{
+        const empleados = await fetch(`https://apisi2.up.railway.app/api/emp`,{
             method: 'get', // *GET, POST, PUT, DELETE, etc.
             mode: 'cors', // no-cors, *cors, same-origin
             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -69,15 +77,19 @@ export const RenderMuser = (req, res) => {
         }).then((respueta)=> {
             return respueta.json()
         }) 
+        
 
     res.render('asignarA.ejs', {activos,empleados});
+    } catch (error) {
+      console.error(error)
+    }
+    
   };
 
   export const AsigAct = async(req, res) => {
     try {
         const { idActivo, cipersona,fecha } = req.body;  
-        const Npass = await helpers.encriptar(pass) 
-        console.log(Npass)
+        console.log(req.body)
         const response = await fetch(`https://apisi2.up.railway.app/api/user/createE`, {
           method: 'post',
           mode: 'cors', // no-cors, *cors, same-origin

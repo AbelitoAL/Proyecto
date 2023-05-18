@@ -1,6 +1,6 @@
 import multer from 'multer'
 import { Router } from "express" 
-import { createActivo } from '../controllers/activo.CO.js';
+import { createActivo, deleteActivo, getActivos, renderCreateActivo, renderUpdateActivo, updateActivo } from '../controllers/activo.CO.js';
 import {dirname, join} from 'path';
 import {fileURLToPath} from 'url';
 
@@ -22,5 +22,15 @@ const upload = multer({storage})
 
 
 Acti.post('/formP', upload.single("img"), createActivo)
+
+Acti.post('/crearActivo', createActivo)
+Acti.get('/crearActivo', renderCreateActivo)
+
+Acti.post('/eliminarActivo', deleteActivo)
+
+Acti.post('/renderActualizarActivo',renderUpdateActivo)
+Acti.post('/actualizarActivo',updateActivo)
+
+Acti.get('/activo', getActivos)
 
 export default Acti

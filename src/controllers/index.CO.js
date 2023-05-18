@@ -5,33 +5,49 @@ import fetch from "node-fetch";
 export const slash = (req, res) => {
   res.render('index.ejs');
 };
-export const RenderL = (req, res) => {
-  res.render('listadoE.ejs');
+export const RenderL = async(req, res) => {
+  const response = await fetch(`https://apisi2.up.railway.app/api/emp`,{
+            method: 'GET', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', // include, *same-origin, omit
+        }).then((respueta)=> {
+            return respueta.json()
+        })  
+  res.render('listadoE.ejs',{response});
 };
 
 export const DeleteE = async(req, res) => {
-  const response = await fetch(`https://apisi2.up.railway.app/api/user/${req.body.ci}`, {
+  const response = await fetch(`https://apisi2.up.railway.app/api/user/${req.body.id}`, {
             method: 'delete'
         });
+  res.redirect('/listE')
 };
 
-export const Memp = (req, res) => {
-  const { ci,nombre, id, celular, email, departamento,direccion,descripcion } = req.body
-  res.render('empleM.ejs',{ci,nombre, id, celular, email, departamento,direccion,descripcion})
+export const Memp = async(req, res) => {
+  const ubicaciones = await fetch(`https://apisi2.up.railway.app/api/ubi`,{
+      method: 'get', // *GET, POST, PUT, DELETE, etc.
+      mode: 'cors', // no-cors, *cors, same-origin
+      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: 'same-origin', // include, *same-origin, omit
+  }).then((respueta)=> {
+      return respueta.json()
+  }) 
+  
+  const { ci,nombre, id, celular, email,ciudad, departamento,direccion,descripcion } = req.body
+  res.render('empleM.ejs',{ci,nombre, id, celular, email,ciudad, departamento,direccion,descripcion,ubicaciones})
 };
 
 export const ModE = async(req, res) => {
   const { ci,nombre, id, celular, email, departamento,direccion,descripcion } = req.body;  
-  const response = await fetch(`https://apisi2.up.railway.app/api/emp/${req.body.ciAnt}`,{
-          method: 'put',
-          mode: 'cors', // no-cors, *cors, same-origin
-          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-          credentials: 'same-origin', // include, *same-origin, omit
+  await fetch(`https://apisi2.up.railway.app/api/emp/${req.body.ciAnt}`,{
+          method: 'put',         
           body: JSON.stringify({ ci,nombre, id, celular, email, departamento,direccion,descripcion }),
           headers: { 'Content-Type': 'application/json' },
-          redirect: 'follow', // manual, *follow, error
-          referrerPolicy: 'no-referrer',
+          
         });   
+        console.log("si sale")
+  res.redirect('/formEm')
 };
 
 export const RenderG = (req, res) => {
@@ -39,7 +55,8 @@ export const RenderG = (req, res) => {
 };
 
 export const home = (req, res) => {
-  res.render('home.ejs');
+  const usuario = req.user.nombre
+  res.render('home.ejs',{usuario});
 };
 
 export const renderregister = async (req, res) => {

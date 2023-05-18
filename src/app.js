@@ -13,6 +13,7 @@ import './lib/passport.js'
 import Adm from "./routes/persona.js";
 import Acti from "./routes/activo.js";
 import helpers from './lib/helpers.js';
+import Ubicacion from "./routes/ubicacion.js";
 
 //como comunicarse con la api:
 /*fetch("https://reqres.in/api/users?page=2")
@@ -62,5 +63,6 @@ app.use( async (req, res, next) => {
 app.use(Inicio)
 app.use(Adm)
 app.use(Acti)
+app.use(Ubicacion)
 
 export default app;
