@@ -5,8 +5,7 @@ export const RenderMuser = (req, res) => {
 
   export const Muser = async(req, res) => {
     try {
-        const { nombre, usuario, direccion, ciudad, celular, email } = req.body
-        console.log(req.body)
+        const { nombre, usuario, direccion, ciudad, celular, email } = req.body        
         const response = await fetch(`https://apisi2.up.railway.app/api/user/${req.user.ci}`, {
           method: 'put',
           mode: 'cors', // no-cors, *cors, same-origin
@@ -16,9 +15,8 @@ export const RenderMuser = (req, res) => {
           headers: { 'Content-Type': 'application/json' },
           redirect: 'follow', // manual, *follow, error
           referrerPolicy: 'no-referrer',
-        });
-        
-        res.redirect('/home')
+        });        
+        res.redirect('/home') 
       } catch (error) {
         console.error(error)
         res.send('ERROR')
