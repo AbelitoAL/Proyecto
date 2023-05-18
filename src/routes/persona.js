@@ -11,4 +11,5 @@ Adm.post('/formEm', createE)
 Adm.get('/formAs',logeado,RenderAs)
 Adm.post('/formAs', AsigAct)
 
+
 export default Adm

@@ -52,8 +52,26 @@ export const RenderMuser = (req, res) => {
       }
   };
 
-  export const RenderAs = (req, res) => {
-    res.render('index.ejs');
+  export const RenderAs = async(req, res) => {
+    const activos = await fetch(`https://apisi2.up.railway.app/api/acti`,{
+            method: 'get', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', // include, *same-origin, omit
+        }).then((respueta)=> {
+            return respueta.json()
+        })  
+
+        const empleados = await fetch(`https://apisi2.up.railway.app/api/acti`,{
+            method: 'get', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', // include, *same-origin, omit
+        }).then((respueta)=> {
+            return respueta.json()
+        }) 
+
+    res.render('asignarA.ejs', {activos,empleados});
   };
 
   export const AsigAct = async(req, res) => {
