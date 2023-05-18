@@ -47,21 +47,22 @@
                                     <label class="col-sm-3 col-md-3 col-xxl-3 col-form-label text-sm-end" for="ci">Id de
                                         empleado</label>
                                     <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
-                                        <input class="form-control" data-val="true" name="id" type="text" value="" />
+                                        <input class="form-control" data-val="true" name="id" type="text" value="<%= id %>" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-md-3 col-xxl-3 col-form-label text-sm-end" for="ci">CI de
                                         empleado</label>
                                     <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
-                                        <input class="form-control" data-val="true" name="ci" type="text" value="" />
+                                        <input class="hidden" data-val="true" name="ciAnt" type="text" value="<%= ci %>" />
+                                        <input class="form-control" data-val="true" name="ci" type="text" value="<%= ci %>" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-md-3 col-xxl-3 col-form-label text-sm-end"
                                         for="Title">Dirección</label>
                                     <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
-                                        <input class="form-control" data-val="true" name="direccion" type="text" value="" />
+                                        <input class="form-control" data-val="true" name="direccion" type="text" value="<%= direccion %>" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -69,7 +70,7 @@
                                         for="Title">Ciudad</label>
                                     <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
                                         <input class="form-control" data-val="true" id="ciudad" name="Title" type="text"
-                                            value="" />
+                                            value="<%= ciudad %>" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -79,7 +80,7 @@
                                         <div class="input-group">
                                             <span class="input-group-text"></span>
                                             <input placeholder="Teléfono" class="form-control" data-val="true"
-                                                id="Phone" maxlength="20" name="celular" type="tel" value="" />
+                                                id="Phone" maxlength="20" name="celular" type="tel" value="<%= celular %>" />
                                         </div>
                                         <span class="field-validation-valid" data-valmsg-for="Phone"
                                             data-valmsg-replace="true"></span>
@@ -92,7 +93,7 @@
                                         <div class="input-group">
                                             <span class="input-group-text"></i></span>
                                             <input placeholder="Correo" class="form-control" data-val="true"
-                                                name="email" type="email" value="" />
+                                                name="email" type="email" value="<%= email %>" />
                                         </div>
                                     </div>
                                 </div>
@@ -116,7 +117,7 @@
                                     <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
                                         <textarea class="form-control" cols="20" data-val="true"
                                             data-val-length="Maximum length is 1000." data-val-length-max="1000"
-                                            id="descripcion" maxlength="1000" name="descripcion" rows="4"></textarea>
+                                            id="descripcion" maxlength="1000" name="descripcion" rows="4"><%= descripcion %></textarea>
                                         <span class="field-validation-valid" data-valmsg-for="Notes"
                                             data-valmsg-replace="true"></span>
                                     </div>
@@ -127,9 +128,7 @@
                         <p>
                         <div class="form-group row">
                             <div class="col-sm-9 offset-sm-3">
-                                <button class="btn btn-primary" type="submit">Agregar empleado</button>
-                                <button class="btn btn-secondary" type="button">Cancelar</button>
-                                <a href="/listE"><button  type="button" class="btn btn-success">Listar</button></a>                                
+                                <button class="btn btn-primary" type="submit">Actualizar empleado</button>                            
                             </div>
                         </div>
                     </form>

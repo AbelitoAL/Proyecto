@@ -1,4 +1,5 @@
-import fetch from "node-fetch";
+import fetch from "node-fetch"
+
 export const RenderMuser = (req, res) => {
     res.render('usuario.ejs');
   };
@@ -58,7 +59,7 @@ export const RenderMuser = (req, res) => {
             credentials: 'same-origin', // include, *same-origin, omit
         }).then((respueta)=> {
             return respueta.json()
-        })  
+        }) 
 
         const empleados = await fetch(`https://apisi2.up.railway.app/api/acti`,{
             method: 'get', // *GET, POST, PUT, DELETE, etc.

@@ -5,6 +5,34 @@ import fetch from "node-fetch";
 export const slash = (req, res) => {
   res.render('index.ejs');
 };
+export const RenderL = (req, res) => {
+  res.render('listadoE.ejs');
+};
+
+export const DeleteE = async(req, res) => {
+  const response = await fetch(`https://apisi2.up.railway.app/api/user/${req.body.ci}`, {
+            method: 'delete'
+        });
+};
+
+export const Memp = (req, res) => {
+  const { ci,nombre, id, celular, email, departamento,direccion,descripcion } = req.body
+  res.render('empleM.ejs',{ci,nombre, id, celular, email, departamento,direccion,descripcion})
+};
+
+export const ModE = async(req, res) => {
+  const { ci,nombre, id, celular, email, departamento,direccion,descripcion } = req.body;  
+  const response = await fetch(`https://apisi2.up.railway.app/api/emp/${req.body.ciAnt}`,{
+          method: 'put',
+          mode: 'cors', // no-cors, *cors, same-origin
+          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+          credentials: 'same-origin', // include, *same-origin, omit
+          body: JSON.stringify({ ci,nombre, id, celular, email, departamento,direccion,descripcion }),
+          headers: { 'Content-Type': 'application/json' },
+          redirect: 'follow', // manual, *follow, error
+          referrerPolicy: 'no-referrer',
+        });   
+};
 
 export const RenderG = (req, res) => {
   res.render('gestionarA.ejs');

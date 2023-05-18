@@ -102,3 +102,9 @@ body {
     margin-right: 10px;
 }
 
+.btn.btn-success {
+    background-color: rgb(81, 163, 4);
+    color: #fff;
+    padding: 10px 20px;
+    margin-right: 10px;
+}
