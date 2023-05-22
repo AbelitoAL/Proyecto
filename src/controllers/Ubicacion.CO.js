@@ -47,7 +47,7 @@ export const renderUpdateUbicacion = async (req, res) => {
   console.log(req.body);
   const { id, sitio, localizacion, departamento } = req.body;
   res.render('actualizarUbicacion', { id, sitio, localizacion, departamento })
-};
+}
 // Controlador para actualizar la información de un ubicacion
 export const updateUbicacion = async (req, res) => {
   console.log(req.body);
@@ -63,7 +63,7 @@ export const updateUbicacion = async (req, res) => {
     console.error(error);
     res.send('ERROR');
   }
-};
+}
 
 // Controlador para eliminar un ubicacion por su ID
 export const deleteUbicacion = async (req, res) => {
@@ -76,4 +76,4 @@ export const deleteUbicacion = async (req, res) => {
     console.error(error);
     res.send('ERROR');
   }
-};
+}
