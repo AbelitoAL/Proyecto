@@ -72,7 +72,7 @@
                                     <% for (let i=0; i < activos.length; i++) { %>
                                     <tr>
                                         <td scope="col"><%= i+1 %></td>>
-                                        <td><%= activos[i].id%></td>
+                                        <td><%= activos[i].idactivo%></td>
                                         <td><%= activos[i].descripcion%></td>
                                         <td></td>
                                         <td><%= activos[i].sitio%></td>
@@ -82,8 +82,8 @@
                                         <td>
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                data-target="#exampleModal" data-id="<%= activos[i].id %>"></button>>
-                                                Asignar
+                                                data-target="#exampleModal" data-id="<%= activos[i].idactivo %>">Asignar</button>
+                                                
                                             </button>
                                         </td>
 

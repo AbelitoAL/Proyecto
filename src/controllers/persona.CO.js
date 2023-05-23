@@ -78,7 +78,7 @@ export const RenderMuser = (req, res) => {
             return respueta.json()
         }) 
         
-
+        console.log(activos)
     res.render('asignarA.ejs', {activos,empleados});
     } catch (error) {
       console.error(error)
@@ -88,8 +88,9 @@ export const RenderMuser = (req, res) => {
 
   export const AsigAct = async(req, res) => {
     try {
-        const { idActivo, cipersona,fecha } = req.body;          
-        const response = await fetch(`https://apisi2.up.railway.app/api/user/createE`, {
+        const { idActivo, cipersona,fecha } = req.body;
+        console.log(req.body)          
+        const response = await fetch(`https://apisi2.up.railway.app/api/user/Asig`, {
           method: 'post',
           mode: 'cors', // no-cors, *cors, same-origin
           cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
