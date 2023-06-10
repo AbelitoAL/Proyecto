@@ -36,8 +36,8 @@
     <!-----LISTA----->
     <div class="container">
         <div class="row">
-            <div class="jumbotron" style="padding: 10px;">
-                <h1 class="page-title" style="margin-bottom: 10px;"><i class="bx bx-user-check"></i> Asignar</h1>
+            <div class="col-12 text-center" style="padding: 10px; margin-top: 2%;">
+                <h1 class="page-title" style="margin-bottom: 10px;"><i class="bx bx-user-check" style="color: rgba(6, 158, 247, 0.849);"></i> Asignar</h1>
             </div>
         </div>
     </div>
@@ -54,6 +54,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
+
                             <table id="userList" class="table table-bordered table-hover table-striped">
                                 <thead class="thead-light">
                                     <tr>
@@ -82,11 +83,9 @@
                                         <td>
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                data-target="#exampleModal" data-id="<%= activos[i].idactivo %>">Asignar</button>
-                                                
+                                                data-target="#exampleModal" data-id="<%= activos[i].idactivo %>">Asignar</button>                                                
                                             </button>
                                         </td>
-
                                     </tr>
                                     <% } %>
                                     

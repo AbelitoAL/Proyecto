@@ -35,9 +35,10 @@
                         <h2>Iniciar Sesión</h2>
                         <input type="text" placeholder="Usuario" name="UsuI" autofocus>
                         <input type="password" placeholder="Contraseña" name="pass" required>
-                        <button>Entrar</button>
-                    </form>
+                        <button>Entrar</button>                   
 
+                    </form>
+                    <%- include('./mensajes.ejs') %>
                     <!--Register-->
                     <form action="/Register" method="post" class="formulario__register">
                         <h2>Regístrarse</h2>
@@ -54,5 +55,7 @@
         </main>
 
         <script src="js/script.js"></script>
+
+        
 </body>
 </html>

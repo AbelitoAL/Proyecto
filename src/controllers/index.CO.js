@@ -5,6 +5,54 @@ import fetch from "node-fetch";
 export const slash = (req, res) => {
   res.render('index.ejs');
 };
+
+
+export const reporte = async(req, res) => {
+  const response = await fetch(`https://apisi2.up.railway.app/api/acti`,{
+    method: 'GET', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+}).then((respueta)=> {
+    return respueta.json()
+}) 
+  res.render('reportes.ejs',{response});
+};
+
+
+export const renderBit = async(req, res) => {
+  const response = await fetch(`https://apisi2.up.railway.app/api/bitac`,{
+            method: 'GET', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', // include, *same-origin, omit
+        }).then((respueta)=> {
+            return respueta.json()
+        }) 
+  res.render('bitacora.ejs',{response});
+};
+
+export const renderBitF = async(req, res) => {
+  const Inicio = req.body.Inicio
+  const Fin = req.body.Fin
+  const response = ""
+  try {
+    const response = await fetch(`https://apisi2.up.railway.app/api/bitac/${Inicio}/${Fin}`,{
+            method: 'GET', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', // include, *same-origin, omit
+        }).then((respueta)=> {
+            return respueta.json()
+        }) 
+    
+  res.render('bitacora.ejs',{response});
+  } catch (error) {
+    res.render('bitacora.ejs',{response});
+  }
+  
+};
+
 export const RenderL = async(req, res) => {
   const response = await fetch(`https://apisi2.up.railway.app/api/emp`,{
             method: 'GET', // *GET, POST, PUT, DELETE, etc.
@@ -97,6 +145,17 @@ export const SendData = passport.authenticate('local.login', {
 });
 
 export const cerrarSesion = async (req, res) => {
+const culpable = req.user.ci
+  const response = await fetch(`https://apisi2.up.railway.app/api/C`, {
+          method: 'post',
+          mode: 'cors', // no-cors, *cors, same-origin
+          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+          credentials: 'same-origin', // include, *same-origin, omit
+          body: JSON.stringify({ culpable }),
+          headers: { 'Content-Type': 'application/json' },
+          redirect: 'follow', // manual, *follow, error
+          referrerPolicy: 'no-referrer',
+        });
   req.logOut(async (err) => {
     if (err) {
       return next(err);

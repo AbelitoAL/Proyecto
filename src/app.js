@@ -12,8 +12,9 @@ import flash from 'connect-flash';
 import './lib/passport.js'
 import Adm from "./routes/persona.js";
 import Acti from "./routes/activo.js";
-import helpers from './lib/helpers.js';
+
 import Ubicacion from "./routes/ubicacion.js";
+
 
 //como comunicarse con la api:
 /*fetch("https://reqres.in/api/users?page=2")
@@ -31,7 +32,7 @@ app.use(session({
     saveUninitialized: false
 }));
 
- 
+app.use(flash());   
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(bodyParser.json());
@@ -46,7 +47,8 @@ app.use(express.static(join(__dirname, 'public')))
 
 app.use( async (req, res, next) => {
     
-    
+    app.locals.aprobado = req.flash("aprobado");
+    app.locals.denegado = req.flash("denegado");
     app.locals.VerA = req.isAuthenticated();
     app.locals.VerAd = false;
     
@@ -64,5 +66,6 @@ app.use(Inicio)
 app.use(Adm)
 app.use(Acti)
 app.use(Ubicacion)
+
 
 export default app;

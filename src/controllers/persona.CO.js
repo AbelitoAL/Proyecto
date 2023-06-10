@@ -4,6 +4,8 @@ export const RenderMuser = (req, res) => {
     res.render('usuario.ejs');
   };
 
+
+
   export const Muser = async(req, res) => {
     try {
         const { nombre, usuario, direccion, ciudad, celular, email } = req.body        
@@ -39,13 +41,13 @@ export const RenderMuser = (req, res) => {
   export const createE = async(req, res) => {
     try {
         const { ci,nombre, id, celular, email, departamento,direccion,descripcion } = req.body;  
-        
+        const culpable = req.user.ci
         const response = await fetch(`https://apisi2.up.railway.app/api/user/createE`, {
           method: 'post',
           mode: 'cors', // no-cors, *cors, same-origin
           cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
           credentials: 'same-origin', // include, *same-origin, omit
-          body: JSON.stringify({ ci,nombre, id, celular, email, departamento,direccion,descripcion }),
+          body: JSON.stringify({ ci,nombre, id, celular, email, departamento,direccion,descripcion,culpable }),
           headers: { 'Content-Type': 'application/json' },
           redirect: 'follow', // manual, *follow, error
           referrerPolicy: 'no-referrer',

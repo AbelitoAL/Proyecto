@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="css/estiloA.css">
+
+    <!----===== Boxicons CSS ===== -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+
+
+</head>
+
+<%- include('./barramenu') %>
+
+<body id="body">
+
+    <!-----LISTA----->
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center" style="padding: 10px; margin-top: 2%;">
+                <h1 class="page-title" style="margin-bottom: 10px;"><i class="bi bi-archive" style="color: rgba(6, 158, 247, 0.849);"></i> Bitácora</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <form class="form-inline" action="/buscar" method="post" style="margin-top: 20px;">
+            <div class="form-group" style="display: flex; justify-content: center; align-items: center;">
+                <label for="fechaInicio2" style="margin-right: 10px;">Fecha inicio</label>
+                <input class="form-control" id="fechaInicio2" name="Inicio" placeholder="Ingrese una fecha de inicio" type="date" style="margin-right: 10px;">
+                <label for="fechaFin2" style="margin-right: 10px;">Fecha fin</label>
+                <input class="form-control" id="fechaFin2" name="Fin" placeholder="Ingrese una fecha de fin" type="date" style="margin-right: 10px;">
+                <button type="submit" class="btn btn-primary">Buscar <i class="bi bi-search"></i></button>
+            </div>
+        </form>
+        
+        <br>
+
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h4 class="mb-0">Registro de actividad</h4>
+                        <div>
+                            <a href="/home"> <input type="button" class="btn btn-dark mr-3" value="Volver" /> </a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="userList" class="table table-bordered table-hover table-striped">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Fecha</th>
+                                        <th scope="col">Acción</th>
+                                        <th scope="col">Culpable</th>
+                                  
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <% for (let i=0; i < response.length; i++) { %>
+                                    <tr>
+                                        <td scope="col">
+                                            <%= i+1 %>
+                                        </td>
+                                        <td scope="col">
+                                            <%= response[i].fecha.substring(0,10) %>
+                                        </td>
+                                        <td scope="col">
+                                            <%= response[i].accion%>
+                                        </td>
+                                        <td scope="col">
+                                            <%= response[i].culpable%>
+                                        </td>                                       
+
+                                    </tr>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>
