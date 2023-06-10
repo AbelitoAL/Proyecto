@@ -18,6 +18,32 @@ helpers.descriptar = async (contra, Savecontra) => {
         console.log(e)
     }
 }
+
+helpers.VRolM = (rol) => {
+             
+        if(rol == 2){
+            return true
+        }
+        return false
+
+}
+helpers.VRolAs = (rol) => {
+             
+        if(rol == 3){
+            return true
+        }
+        return false
+
+}
+
+helpers.VRolAd = (rol) => {
+               
+        if(rol == 1){
+            return true
+        }
+        return false
+
+}
 //-----------------------------------------------------------------------
 
 export default helpers;

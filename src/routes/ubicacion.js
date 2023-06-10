@@ -3,14 +3,14 @@ import { getUbicacionByID, createUbicacion,deleteUbicacion,getUbicaciones,update
 import { logeado, notlogeado } from "../lib/privado.js";
 
 const Ubicacion = Router();
-Ubicacion.post('/crearUbicacion', createUbicacion)
-Ubicacion.get('/crearUbicacion', renderCreateUbicacion)
+Ubicacion.post('/crearUbicacion',logeado, createUbicacion)
+Ubicacion.get('/crearUbicacion',logeado, renderCreateUbicacion)
 
-Ubicacion.post('/eliminarUbicacion', deleteUbicacion)
+Ubicacion.post('/eliminarUbicacion',logeado, deleteUbicacion)
 
-Ubicacion.post('/renderActualizarUbicacion',renderUpdateUbicacion)
-Ubicacion.post('/actualizarUbicacion',updateUbicacion)
+Ubicacion.post('/renderActualizarUbicacion',logeado,renderUpdateUbicacion)
+Ubicacion.post('/actualizarUbicacion',logeado,updateUbicacion)
 
-Ubicacion.get('/ubicacion', getUbicaciones)
+Ubicacion.get('/ubicacion',logeado, getUbicaciones)
 
 export default Ubicacion;

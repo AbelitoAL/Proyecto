@@ -65,6 +65,26 @@ export const RenderL = async(req, res) => {
   res.render('listadoE.ejs',{response});
 };
 
+export const RenderC = async(req, res) => {
+  res.render('CContra.ejs');
+};
+
+export const cambiarC = async(req, res) => {
+  if(await helpers.descriptar(req.body.Apass, req.user.contrasena)){
+    const Npass = await helpers.encriptar(req.body.Npass)
+    await fetch(`https://apisi2.up.railway.app/api/user/${req.user.ci}/${req.user.usuario}`,{
+          method: 'put',         
+          body: JSON.stringify({ Npass }),
+          headers: { 'Content-Type': 'application/json' },          
+        }); 
+        res.redirect('/home');
+  }else{
+    console.log('denego')
+    req.flash('denegado', 'Contraseña incorrecta')
+  }
+  res.render('CContra.ejs');
+};
+
 export const DeleteE = async(req, res) => {
   const response = await fetch(`https://apisi2.up.railway.app/api/user/${req.body.id}`, {
             method: 'delete'
@@ -94,7 +114,7 @@ export const ModE = async(req, res) => {
           headers: { 'Content-Type': 'application/json' },
           
         });   
-        console.log("si sale")
+        
   res.redirect('/formEm')
 };
 

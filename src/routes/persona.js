@@ -1,33 +1,37 @@
 import { Router } from "express" 
 import { AsigAct, Muser, RenderAs, RenderMuser, RenderformE, createE } from "../controllers/persona.CO.js";
 import { logeado } from "../lib/privado.js";
-import { DeleteE, Memp, RenderL,ModE, renderBit, reporte, renderBitF } from "../controllers/index.CO.js";
+import { DeleteE, Memp, RenderL,ModE, renderBit, reporte, renderBitF, RenderC, cambiarC } from "../controllers/index.CO.js";
 import { generarPDF } from "../controllers/reportes.controller.js";
 
 const Adm = Router();
 
 Adm.get('/Muser',logeado,RenderMuser)
-Adm.post('/Muser',Muser)
+Adm.post('/Muser',logeado,Muser)
 Adm.get('/formEm',logeado, RenderformE)
-Adm.post('/formEm', createE)
+Adm.post('/formEm', logeado,createE)
 Adm.get('/formAs',logeado,RenderAs)
-Adm.post('/formAs', AsigAct)
+Adm.post('/formAs',logeado, AsigAct)
 
-Adm.get('/listE', RenderL)
+Adm.get('/listE',logeado, RenderL)
 
-Adm.get('/ReporteAct', reporte)
+Adm.get('/CContra',logeado, RenderC)
 
-Adm.get('/bita', renderBit)
+Adm.post('/Mcontra',logeado, cambiarC)
 
-Adm.post('/buscar', renderBitF)
+Adm.get('/ReporteAct',logeado, reporte)
 
-Adm.post('/DeleteE', DeleteE)
+Adm.get('/bita',logeado, renderBit)
 
-Adm.post('/Memp', Memp)
+Adm.post('/buscar',logeado, renderBitF)
 
-Adm.post('/ModEmp',ModE)
+Adm.post('/DeleteE',logeado, DeleteE)
 
-Adm.post('/generarpdf',  generarPDF)
+Adm.post('/Memp',logeado, Memp)
+
+Adm.post('/ModEmp',logeado,ModE)
+
+Adm.post('/generarpdf',logeado, generarPDF)
 
 
 export default Adm

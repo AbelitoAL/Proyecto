@@ -14,11 +14,11 @@ Inicio.get('/Login',RenderLogin)
 
 Inicio.post('/Login',SendData)
 
-Inicio.get('/cerrar', cerrarSesion);
+Inicio.get('/cerrar',logeado, cerrarSesion);
 
 Inicio.get('/GestionarA',logeado,RenderG)
 
-Inicio.post('/GestionarA',SendDatos)
+Inicio.post('/GestionarA',logeado,SendDatos)
 
 
 export default Inicio;

@@ -34,7 +34,7 @@
                     <h4>Inicio</h4>
                 </div>
             </a>
-
+            <% if(VerAd  || VerAS ) { %>
             <a class="has-submenu">
                 <div class="option">
                     <i class='bx bx-extension icon' title="Activos"></i>
@@ -46,7 +46,8 @@
                     <li><a href="/formAs">Asignar Activo</a></li>
                 </ul>
             </a>
-
+            <% } %>
+            <% if(VerAd) { %>
             <a class="has-submenu">
                 <div class="option">
                     <i class='bx bx-file-blank' title="Reportes"></i>
@@ -57,14 +58,16 @@
                     <li><a href="#">Informe2</a></li>
                 </ul>
             </a>
-
+            <% } %>
+            <% if(VerAd || VerAS ) { %>
             <a href="/formEm">
                 <div class="option">
                     <i class="bi bi-person-plus-fill" title="Empleados"></i>
                     <h4>Empleados</h4>
                 </div>
             </a>
-
+            <% } %>
+            <% if( VerAd ) { %>
             <a class="has-submenu">
                 <div class="option">
                     <i class='bx bx-map' title="Ubi"></i>
@@ -75,14 +78,13 @@
                     <li><a href="/crearUbicacion">Crear Ubicación</a></li>
                 </ul>
             </a>
-
             <a href="/bita">
                 <div class="option">
                     <i class="bi bi-folder" title="Bitacora"></i>
                     <h4>Bitácora</h4>
                 </div>
             </a>
-
+            <% } %>
             <a href="/Muser">
                 <div class="option">
                     <i class="bi bi-person-square" title="Perfil"></i>

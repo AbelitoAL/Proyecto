@@ -8,6 +8,8 @@ import {fileURLToPath} from 'url';
 import passport from 'passport';
 import session from 'express-session';
 import flash from 'connect-flash';
+import helpers from "./lib/helpers.js";
+
 
 import './lib/passport.js'
 import Adm from "./routes/persona.js";
@@ -45,16 +47,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(join(__dirname, 'public')))
 
-app.use( async (req, res, next) => {
-    
+app.use( async (req, res, next) => {    
     app.locals.aprobado = req.flash("aprobado");
     app.locals.denegado = req.flash("denegado");
-    app.locals.VerA = req.isAuthenticated();
-    app.locals.VerAd = false;
-    
-    app.locals.VerP = (!req.isAuthenticated());
+
     if (req.user) {
-        
+        app.locals.VerM = helpers.VRolM(req.user.rol_id)
+        app.locals.VerAS = helpers.VRolAs(req.user.rol_id)
+        app.locals.VerAd = helpers.VRolAd(req.user.rol_id)
                 
     } else {// si no hay mandamos la variable vacia
         app.locals.user = req.user;

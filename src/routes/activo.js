@@ -3,6 +3,7 @@ import { Router } from "express"
 import { createActivo, deleteActivo, getActivos, renderCreateActivo, renderUpdateActivo, updateActivo } from '../controllers/activo.CO.js';
 import {dirname, join} from 'path';
 import {fileURLToPath} from 'url';
+import { logeado } from '../lib/privado.js';
 
 
 const Acti = Router();
@@ -23,14 +24,14 @@ const upload = multer({storage})
 
 Acti.post('/formP', upload.single("img"), createActivo)
 
-Acti.post('/crearActivo', createActivo)
-Acti.get('/crearActivo', renderCreateActivo)
+Acti.post('/crearActivo',logeado, createActivo)
+Acti.get('/crearActivo',logeado, renderCreateActivo)
 
-Acti.post('/eliminarActivo', deleteActivo)
+Acti.post('/eliminarActivo',logeado, deleteActivo)
 
-Acti.post('/renderActualizarActivo',renderUpdateActivo)
-Acti.post('/actualizarActivo',updateActivo)
+Acti.post('/renderActualizarActivo',logeado,renderUpdateActivo)
+Acti.post('/actualizarActivo',logeado,updateActivo)
 
-Acti.get('/activo', getActivos)
+Acti.get('/activo',logeado, getActivos)
 
 export default Acti
