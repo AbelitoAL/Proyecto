@@ -50,6 +50,7 @@ app.use(express.static(join(__dirname, 'public')))
 app.use( async (req, res, next) => {    
     app.locals.aprobado = req.flash("aprobado");
     app.locals.denegado = req.flash("denegado");
+    app.locals.denegadoE = req.flash("denegadoE");
 
     if (req.user) {
         app.locals.VerM = helpers.VRolM(req.user.rol_id)

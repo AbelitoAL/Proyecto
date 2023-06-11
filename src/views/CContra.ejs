@@ -40,7 +40,7 @@
                                         for="FirstName">Contraseña Actual</label>
                                     <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
                                         <input class="form-control" data-val="true"
-                                            name="Apass" type="text" value=""/>
+                                            name="Apass" type="password" value=""/>
                                     </div>
                                 </div>
 
@@ -49,10 +49,12 @@
                                         for="FirstName">Nueva Contraseña</label>
                                     <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
                                         <input class="form-control" data-val="true"
-                                            name="Npass" type="text" value=""/>
+                                            name="Npass" type="password" value=""/>
                                     </div>
                                 </div>
-                                
+                                <% if (denegadoE.length > 0) { %>
+                                    <%= denegadoE %>
+                                <% } %>
                             </div>
                         </div>
                         <p>

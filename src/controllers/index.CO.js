@@ -79,10 +79,10 @@ export const cambiarC = async(req, res) => {
         }); 
         res.redirect('/home');
   }else{
-    console.log('denego')
-    req.flash('denegado', 'Contraseña incorrecta')
+    console.log('denego')    
   }
-  res.render('CContra.ejs');
+  const denegadoE = 'Contraseña Incorrecta Intente Nuevamente'
+  res.render('CContra.ejs',{denegadoE});
 };
 
 export const DeleteE = async(req, res) => {
