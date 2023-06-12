@@ -7,6 +7,37 @@ export const slash = (req, res) => {
 };
 
 
+export const Renderde = (req, res) => {
+  res.render('depre.ejs');
+};
+
+export const deprecalculo = (req, res) => {
+let data = []
+const fecha = req.body.fecha
+var Naño = parseInt(fecha.slice(0, -6))
+var Nmes = parseInt(fecha.slice(5, -3))
+const Vutil = parseInt(req.body.Vutil)
+const Cdepreciable = parseInt(req.body.Cdepreciable)
+const VRescate = parseInt(req.body.VRescate)
+var mes = Nmes + Vutil
+var cantaños =Math.round(mes / 12)
+if(cantaños == 0 ){
+    var d = Math.floor((Cdepreciable - VRescate)/1)
+}else{
+    var d = Math.floor((Cdepreciable - VRescate)/cantaños) 
+}
+const Total = req.body.Cdepreciable
+if (cantaños > 0 ){
+    for(var i = 1; i <= cantaños; i++){
+        const dato = {year: Naño , value: Total - (d*i)}
+        Naño++
+        data.unshift(dato)
+    }
+}
+res.render('depre.ejs');
+};
+
+
 export const reporte = async(req, res) => {
   const response = await fetch(`https://apisi2.up.railway.app/api/acti`,{
     method: 'GET', // *GET, POST, PUT, DELETE, etc.
@@ -183,4 +214,3 @@ const culpable = req.user.ci
     res.redirect('/');
   });
 };
-

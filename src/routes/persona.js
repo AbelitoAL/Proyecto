@@ -1,8 +1,10 @@
 import { Router } from "express" 
 import { AsigAct, Muser, RenderAs, RenderMuser, RenderformE, createE } from "../controllers/persona.CO.js";
 import { logeado } from "../lib/privado.js";
-import { DeleteE, Memp, RenderL,ModE, renderBit, reporte, renderBitF, RenderC, cambiarC } from "../controllers/index.CO.js";
+import { DeleteE, Memp, RenderL,ModE, renderBit, reporte, renderBitF, RenderC, cambiarC, Renderde, deprecalculo } from "../controllers/index.CO.js";
 import { generarPDF } from "../controllers/reportes.controller.js";
+
+
 
 const Adm = Router();
 
@@ -32,6 +34,10 @@ Adm.post('/Memp',logeado, Memp)
 Adm.post('/ModEmp',logeado,ModE)
 
 Adm.post('/generarpdf',logeado, generarPDF)
+
+Adm.get('/depre', Renderde)
+
+Adm.post('/depre', deprecalculo)
 
 
 export default Adm
