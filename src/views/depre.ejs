@@ -35,8 +35,9 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 
     <script type="text/javascript" src="libs/morris.min.js"></script>
+    <script src="libs/datos.js"></script>
     <link rel="stylesheet" href="libs/morris.css">
-    
+
 
 
 
@@ -73,7 +74,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md">
-                            <button type="submit" class="btn btn-primary d-inline-block" data-toggle="modal" data-target="#exampleModal">
+                            <button type="submit" class="btn btn-primary d-inline-block" data-toggle="modal"
+                                data-target="#exampleModal">
                                 <i class='bx bx-plus'></i>
                                 Administrar
                             </button>
@@ -81,249 +83,291 @@
                         </div>
                     </div>
                 </div>
+                <% if (datos.length> 0) { %>
+                    <div class="tab-content mt-3" id="myTabContent">
+                        <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table id="userList" class="table table-bordered table-hover table-striped">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Fecha de adquisición</th>
+                                                    <th scope="col">Costo Depreciable</th>
+                                                    <th scope="col">Valor de rescate</th>
+                                                    <th scope="col">Vida útil (meses)</th>
+                                                    <th scope="col">depr. Método</th>
 
-                <div class="tab-content mt-3" id="myTabContent">
-                    <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table id="userList" class="table table-bordered table-hover table-striped">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Fecha de adquisición</th>
-                                                <th scope="col">Costo Depreciable</th>
-                                                <th scope="col">Valor de rescate</th>
-                                                <th scope="col">Vida útil (meses)</th>
-                                                <th scope="col">depr. Método</th>
+                                                </tr>
+                                            </thead>
 
-                                            </tr>
-                                        </thead>
+                                            <tbody>
+                                                <% for (let i=0; i < datos.length; i++) { %>
+                                                <tr>
+                                                    <td scope="col">
+                                                        <%= i+1 %>
+                                                    </td>
+                                                    <td scope="col">
+                                                        <%= datos[i].fecha%>
+                                                    </td>
+                                                    <td scope="col">
+                                                        <%= datos[i].costoD%>
+                                                    </td>
+                                                    <td scope="col">
+                                                        <%= datos[i].Vres%>
+                                                    </td>
+                                                    <td scope="col">
+                                                        <%= datos[i].VidaU%>
+                                                    </td>
+                                                    <td scope="col">
+                                                        <%= datos[i].metodo%>
+                                                    </td>
 
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>09/05/2003</td>
-                                                <td>4556</td>
-                                                <td>222</td>
-                                                <td>8</td>
-                                                <td>Línea Recta</td>
+                                                </tr>
+                                                <%}%>
+                                            </tbody>
+                                        </table>
+                                    </div>
 
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
                                 </div>
 
                             </div>
-
                         </div>
+
                     </div>
+                    <br>
+                    <%}%>
 
-                </div>
-                <br>
 
-                <!--GRÁFICA ESTADISTICA-->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h2>Estadísticas anuales de depreciación</h2>
+                        <!--GRÁFICA ESTADISTICA-->
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h2>Estadísticas anuales de depreciación</h2>
 
+                                </div>
+                            </div>
+                            <div class="grafica" id="myfirstchart"></div>
                         </div>
-                    </div>
-                    <div class="grafica" id="myfirstchart"></div>
-                </div>
-                <script type="text/javascript" src="libs/lineas.js"></script>
-                <br>
+                        <script type="text/javascript" src="libs/lineas.js"></script>
+                        <br>
+                        <% if(data.length> 0) { %>
+                            <!--SEGUNDA TABLA-->
+                            <div class="tab-content mt-3" id="myTabContent">
+                                <div class="tab-pane fade show active" id="list" role="tabpanel"
+                                    aria-labelledby="list-tab">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table id="userList"
+                                                    class="table table-bordered table-hover table-striped">
+                                                    <thead class="thead-light">
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">Año</th>
+                                                            <th scope="col">Gasto de depreciación</th>
+                                                            <th scope="col">Depreciación acumulada al final del año</th>
+                                                            <th scope="col">Valor en libros a final del año</th>
 
-                <!--SEGUNDA TABLA-->
-                <div class="tab-content mt-3" id="myTabContent">
-                    <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table id="userList" class="table table-bordered table-hover table-striped">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Año</th>
-                                                <th scope="col">Gasto de depreciación</th>
-                                                <th scope="col">Depreciación acumulada al final del año</th>
-                                                <th scope="col">Valor en libros a final del año</th>
+                                                        </tr>
+                                                    </thead>
 
-                                            </tr>
-                                        </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row"></th>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td><%= data[0].tota %></td>
+        
+                                                        </tr>
+                                                        <% for (let i=data.length-1; i >= 0; i--) {  %>
+                                                            <tr>
+                                                                <td scope="col">
+                                                                    <%= i+1 %>
+                                                                </td>
+                                                                <td scope="col">
+                                                                    <%= data[i].year%>
+                                                                </td>
+                                                                <td scope="col">
+                                                                    <%= data[i].depre%>
+                                                                </td>
+                                                                <td scope="col">
+                                                                    <%= data[i].depreacu%>
+                                                                </td>
+                                                                <td scope="col">
+                                                                    <%= data[i].value%>
+                                                                </td>                                                               
+                                                            </tr>
+                                                            <%}%>
 
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>09/05/2003</td>
-                                                <td>4556</td>
-                                                <td>222</td>
-                                                <td>8</td>
+                                                    </tbody>
+                                                </table>
+                                            </div>
 
-                                            </tr>
+                                        </div>
 
-                                        </tbody>
-                                    </table>
+                                    </div>
                                 </div>
 
                             </div>
-
-                        </div>
-                    </div>
-
-                </div>
-
 
             </div>
             <br>
+            <%}%>
 
-            <div class="tab-pane fade" id="opcion2" role="tabpanel" aria-labelledby="opcion2-tab">
-                <h3>Garantía</h3>
 
-                <!-- Button trigger modal -->
-                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#nuevoModal"><i
-                        class='bx bx-plus'></i>
-                    Agregar nuevo
-                </button>
+                <div class="tab-pane fade" id="opcion2" role="tabpanel" aria-labelledby="opcion2-tab">
+                    <h3>Garantía</h3>
 
-                <div class="tab-content mt-3" id="myTabContent">
-                    <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
-                        <div class="card">
-                            <div class="card-header d-flex justify-content-between align-items-center">
-                                <h4 class="mb-0">Listado</h4>
-                                <div>
-                                    <input type="button" class="btn btn-dark mr-3" value="Volver" />
+                    <!-- Button trigger modal -->
+                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#nuevoModal"><i
+                            class='bx bx-plus'></i>
+                        Agregar nuevo
+                    </button>
+
+                    <div class="tab-content mt-3" id="myTabContent">
+                        <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
+                            <div class="card">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h4 class="mb-0">Listado</h4>
+                                    <div>
+                                        <input type="button" class="btn btn-dark mr-3" value="Volver" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table id="userList" class="table table-bordered table-hover table-striped">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Fecha de caducidad</th>
-                                                <th scope="col">Longitud</th>
-                                                <th scope="col">Notas</th>
-                                                <th scope="col">Acción</th>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table id="userList" class="table table-bordered table-hover table-striped">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Fecha de caducidad</th>
+                                                    <th scope="col">Longitud</th>
+                                                    <th scope="col">Notas</th>
+                                                    <th scope="col">Acción</th>
 
-                                            </tr>
-                                        </thead>
+                                                </tr>
+                                            </thead>
 
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
 
-                                            </tr>
+                                                </tr>
 
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
                                 </div>
 
                             </div>
-
                         </div>
+
                     </div>
 
                 </div>
-
-            </div>
-            <div class="tab-pane fade" id="opcion3" role="tabpanel" aria-labelledby="opcion3-tab">
-                <h3>Contenido de la Opción 3</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rutrum ullamcorper orci, ac porta
-                    nunc. Pellentesque efficitur, dui ac aliquet fringilla, metus elit eleifend lectus, vel congue risus
-                    tortor id velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac
-                    turpis egestas. Nulla eget orci vel ipsum elementum eleifend.</p>
-            </div>
-            <div class="tab-pane fade" id="opcion4" role="tabpanel" aria-labelledby="opcion4-tab">
-                <h3>Contenido de la Opción 4</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rutrum ullamcorper orci, ac porta
-                    nunc. Pellentesque efficitur, dui ac aliquet fringilla, metus elit eleifend lectus, vel congue risus
-                    tortor id velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac
-                    turpis egestas. Nulla eget orci vel ipsum elementum eleifend.</p>
-            </div>
+                <div class="tab-pane fade" id="opcion3" role="tabpanel" aria-labelledby="opcion3-tab">
+                    <h3>Contenido de la Opción 3</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rutrum ullamcorper orci, ac porta
+                        nunc. Pellentesque efficitur, dui ac aliquet fringilla, metus elit eleifend lectus, vel congue
+                        risus
+                        tortor id velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac
+                        turpis egestas. Nulla eget orci vel ipsum elementum eleifend.</p>
+                </div>
+                <div class="tab-pane fade" id="opcion4" role="tabpanel" aria-labelledby="opcion4-tab">
+                    <h3>Contenido de la Opción 4</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rutrum ullamcorper orci, ac porta
+                        nunc. Pellentesque efficitur, dui ac aliquet fringilla, metus elit eleifend lectus, vel congue
+                        risus
+                        tortor id velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac
+                        turpis egestas. Nulla eget orci vel ipsum elementum eleifend.</p>
+                </div>
         </div>
     </div>
 
     <!-- Modal -->
     <form action="/depre" method="post">
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Administrar la depreciación de activos</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="mb-3 row">
-                            <label for="basic-url" class="col-sm-4 col-form-label">Costo depreciable</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <span class="input-group-text">Bs</span>
-                                    <input type="text" name="Cdepreciable" id="Cdepreciable" class="form-control" aria-describedby="basic-addon3 basic-addon4" >
-                                </div>
-                                <div class="form-text" id="basic-addon4">Incluyendo impuesto sobre las ventas, flete e
-                                    instalación.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mb-3 row">
-                            <label for="basic-url" class="col-sm-4 col-form-label">Valor del rescate</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <span class="input-group-text">Bs</span>
-                                    <span class="input-group-text">0.00</span>
-                                    <input type="text" name="VRescate" id="VRescate" class="form-control"
-                                        aria-label="Dollar amount (with dot and two decimal places)" >
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Administrar la depreciación de activos</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="mb-3 row">
+                                <label for="basic-url" class="col-sm-4 col-form-label">Costo depreciable</label>
+                                <div class="col-sm-8">
+                                    <div class="input-group">
+                                        <span class="input-group-text">Bs</span>
+                                        <input type="text" name="Cdepreciable" id="Cdepreciable" class="form-control"
+                                            aria-describedby="basic-addon3 basic-addon4">
+                                    </div>
+                                    <div class="form-text" id="basic-addon4">Incluyendo impuesto sobre las ventas, flete
+                                        e
+                                        instalación.
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="mb-3 row">
-                            <label for="formGroupExampleInput" class="col-sm-4 col-form-label">Vida útil (meses)</label>
-                            <div class="col-sm-8">
-                                <input type="text" name="Vutil" id="Vutil" class="form-control" >
+                            <div class="mb-3 row">
+                                <label for="basic-url" class="col-sm-4 col-form-label">Valor del rescate</label>
+                                <div class="col-sm-8">
+                                    <div class="input-group">
+                                        <span class="input-group-text">Bs</span>
+                                        <span class="input-group-text">0.00</span>
+                                        <input type="text" name="VRescate" id="VRescate" class="form-control"
+                                            aria-label="Dollar amount (with dot and two decimal places)">
+                                    </div>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="mb-3 row">
-                            <label for="formGroupExampleInput" class="col-sm-4 col-form-label">Método de
-                                depreciación</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="formGroupExampleInput"
-                                    placeholder="Línea Recta">
+                            <div class="mb-3 row">
+                                <label for="formGroupExampleInput" class="col-sm-4 col-form-label">Vida útil
+                                    (Años)</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="Vutil" id="Vutil" class="form-control">
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="mb-3 row">
-                            <label for="basic-url" class="col-sm-4 col-form-label">Fecha de adquisición</label>
-                            <div class="col-sm-8">
-                                <input type="date" name="fecha" id="fecha" class="form-control">
+                            <div class="mb-3 row">
+                                <label for="formGroupExampleInput" class="col-sm-4 col-form-label">Método de
+                                    depreciación</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="formGroupExampleInput"
+                                        placeholder="Línea Recta" readonly>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label for="basic-url" class="col-sm-4 col-form-label">Fecha de adquisición</label>
+                                <div class="col-sm-8">
+                                    <input type="date" name="fecha" id="fecha" class="form-control">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary" onclick="calcular()">Actualizar</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" onclick="calcular()">Actualizar</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
     </form>
-    
+
 
     <!-- Modal Nuevo-->
 

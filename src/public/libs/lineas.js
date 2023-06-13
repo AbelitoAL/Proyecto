@@ -4,7 +4,7 @@ new Morris.Line({
     element: 'myfirstchart',
     // Registros de datos del gráfico: cada entrada en esta matriz corresponde a un punto en
     // el gráfico.
-    data: datos,
+    data: [{year:'2024',value:6000},{year:'2023', value:24500}],
     // El nombre del atributo de registro de datos que contiene valores de x.
     xkey: 'year',
     // Una lista de nombres de atributos de registros de datos que contienen valores y.

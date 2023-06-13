@@ -21,7 +21,7 @@ passport.use('local.login', new Strategy.Strategy({
         })
         if (response.length > 0) {
             if (UsuI === response[0].usuario && await helpers.descriptar(pass, response[0].contrasena)) { // ¿existe algun Usuario?
-                /* const culpable = response[0].ci
+                const culpable = response[0].ci
             await fetch(`https://apisi2.up.railway.app/api/I`, {
               method: 'post',
               mode: 'cors', // no-cors, *cors, same-origin
@@ -31,7 +31,7 @@ passport.use('local.login', new Strategy.Strategy({
               headers: { 'Content-Type': 'application/json' },
               redirect: 'follow', // manual, *follow, error
               referrerPolicy: 'no-referrer',
-            }); */
+            });
                 return done(null, response[0])
             } else {
                 if (response[0].intentos >= 3) {

@@ -8,40 +8,41 @@ export const slash = (req, res) => {
 
 
 export const Renderde = (req, res) => {
-  res.render('depre.ejs');
+  const datos = []
+  const data = []
+  res.render('depre.ejs',{datos,data});
 };
 
 export const deprecalculo = (req, res) => {
 let data = []
+
 const fecha = req.body.fecha
 var Naño = parseInt(fecha.slice(0, -6))
 var Nmes = parseInt(fecha.slice(5, -3))
 const Vutil = parseInt(req.body.Vutil)
 const Cdepreciable = parseInt(req.body.Cdepreciable)
 const VRescate = parseInt(req.body.VRescate)
-var mes = Nmes + Vutil
-var cantaños =Math.round(mes / 12)
-if(cantaños == 0 ){
-    var d = Math.floor((Cdepreciable - VRescate)/1)
-}else{
-    var d = Math.floor((Cdepreciable - VRescate)/cantaños) 
-}
-const Total = req.body.Cdepreciable
-if (cantaños > 0 ){
-    for(var i = 1; i <= cantaños; i++){
-        const dato = {year: Naño , value: Total - (d*i)}
+var d = Math.floor((Cdepreciable - VRescate)/Vutil) 
+
+const Total = Math.floor(req.body.Cdepreciable)
+const datos = [{fecha: fecha, costoD: Cdepreciable, Vres: VRescate,VidaU: Vutil,metodo:"Linea Recta"}]
+    for(var i = 1; i <= Vutil; i++){
+        const dato = {year: Naño , value: Total - (d*i) , depre: d, depreacu: (d*i),tota:Total}
         Naño++
         data.unshift(dato)
     }
-}
-res.render('depre.ejs');
+
+
+res.render('depre.ejs',{datos,data});
 };
 
 
 export const reporte = async(req, res) => {
+  const culpable = req.user.ci
   const response = await fetch(`https://apisi2.up.railway.app/api/acti`,{
     method: 'GET', // *GET, POST, PUT, DELETE, etc.
     mode: 'cors', // no-cors, *cors, same-origin
+    body: JSON.stringify({ culpable }),
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
     credentials: 'same-origin', // include, *same-origin, omit
 }).then((respueta)=> {
@@ -54,7 +55,7 @@ export const reporte = async(req, res) => {
 export const renderBit = async(req, res) => {
   const response = await fetch(`https://apisi2.up.railway.app/api/bitac`,{
             method: 'GET', // *GET, POST, PUT, DELETE, etc.
-            mode: 'cors', // no-cors, *cors, same-origin
+            mode: 'cors', // no-cors, *cors, same-origin            
             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
             credentials: 'same-origin', // include, *same-origin, omit
         }).then((respueta)=> {
@@ -117,8 +118,10 @@ export const cambiarC = async(req, res) => {
 };
 
 export const DeleteE = async(req, res) => {
+  const culpable = req.user.ci
   const response = await fetch(`https://apisi2.up.railway.app/api/user/${req.body.id}`, {
-            method: 'delete'
+            method: 'delete',
+            body: JSON.stringify({ culpable })
         });
   res.redirect('/listE')
 };
@@ -138,12 +141,12 @@ export const Memp = async(req, res) => {
 };
 
 export const ModE = async(req, res) => {
+  const culpable = req.user.ci
   const { ci,nombre, id, celular, email, departamento,direccion,descripcion } = req.body;  
   await fetch(`https://apisi2.up.railway.app/api/emp/${req.body.ciAnt}`,{
           method: 'put',         
-          body: JSON.stringify({ ci,nombre, id, celular, email, departamento,direccion,descripcion }),
-          headers: { 'Content-Type': 'application/json' },
-          
+          body: JSON.stringify({ ci,nombre, id, celular, email, departamento,direccion,descripcion, culpable}),
+          headers: { 'Content-Type': 'application/json' },          
         });   
         
   res.redirect('/formEm')
