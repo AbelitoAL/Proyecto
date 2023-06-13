@@ -1,6 +1,6 @@
 import multer from 'multer'
 import { Router } from "express" 
-import { createActivo, deleteActivo, getActivos, renderCreateActivo, renderUpdateActivo, updateActivo } from '../controllers/activo.CO.js';
+import { createActivo, createReserva, deleteActivo, getActivos, getReservas, renderCreateActivo, renderCreateReserva, renderUpdateActivo, renderUpdateReserva, updateActivo, updateReserva } from '../controllers/activo.CO.js';
 import {dirname, join} from 'path';
 import {fileURLToPath} from 'url';
 import { logeado } from '../lib/privado.js';
@@ -33,5 +33,11 @@ Acti.post('/renderActualizarActivo',logeado,renderUpdateActivo)
 Acti.post('/actualizarActivo',logeado,updateActivo)
 
 Acti.get('/activo',logeado, getActivos)
+
+Acti.get('/crearReserva', renderCreateReserva)
+Acti.post('/crearReserva', createReserva)
+Acti.get('/reserva', getReservas)
+Acti.post('/renderActualizarReserva',renderUpdateReserva)
+Acti.post('/actualizarReserva',updateReserva)
 
 export default Acti

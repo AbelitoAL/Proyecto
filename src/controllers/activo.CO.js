@@ -131,3 +131,96 @@ export const deleteActivo = async (req, res) => {
     }
 };
 
+
+export const createReserva = async (req, res) => {
+    try {
+        console.log(req.body);
+        const nuevaReserva = {
+            idActivoFijo: req.body.idActivoFijo,
+            ciPersona: req.body.ciPersona,
+            fecha: req.body.fecha,
+            descripcion: req.body.descripcion,
+        };
+
+        const response = await fetch('https://apisi2.up.railway.app/api/acti/res', {
+            method: 'post',
+            body: JSON.stringify(nuevaReserva),
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+        res.redirect('/reserva');
+    } catch (error) {
+        console.error(error);
+        res.send('ERROR SSS');
+    }
+};
+
+export const renderCreateReserva = async (req, res) => {
+    try {
+      const response = await fetch('https://apisi2.up.railway.app/api/acti');
+      const data = await response.json();
+  
+      const clientes = await fetch(`https://apisi2.up.railway.app/api/user`,{
+            method: 'get', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', // include, *same-origin, omit
+        }).then((dataClientes)=> {
+            return dataClientes.json()
+        });
+      const empleados = await fetch(`https://apisi2.up.railway.app/api/emp`,{
+            method: 'get', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', // include, *same-origin, omit
+        }).then((dataEmpleados)=> {
+            return dataEmpleados.json()
+        });
+      const tipoPersona = ['cliente', 'empleado'];
+
+    //   res.render('crearReserva', { activosFijos: data, clientes: dataClientes, empleados: dataEmpleados, tipoPersona: tipoPersona});
+       res.render('crearReserva', {activosFijos:data, clientes, empleados, tipoPersona: tipoPersona })
+    // res.render('crearReserva', { activosFijos: data, personas: personas, tipoPersona: tipoPersona });
+    } catch (error) {
+      console.error(error);
+      res.send('ERROR SS');
+    }
+};
+
+export const getReservas = async (req, res) => {
+    try {
+        //const response = await fetch('http://127.0.0.1:8000/api/acti');
+        const response = await fetch('https://apisi2.up.railway.app/api/res');
+        console.log(response.json);
+        const data = await response.json();
+        console.log(data);
+        res.render('verReservas', { reservas: data });
+    } catch (error) {
+        console.error(error);
+        res.send('ERROR SSSSSSSS');
+    }
+};
+  
+export const renderUpdateReserva = async (req, res) => {
+    console.log(req.body);
+    const { id, idactivofijo, cipersona, fecha, descripcion } = req.body;
+    res.render('actualizarReserva', {id,  idactivofijo, cipersona, fecha, descripcion  })
+};
+
+export const updateReserva = async (req, res) => {
+    try {
+        const {  idactivofijo, cipersona, fecha, descripcion } = req.body;
+        console.log(idactivofijo);
+        const response = await fetch(`https://apisi2.up.railway.app/api/res/${req.body.id}`, {
+            method: 'put',
+            body: JSON.stringify({  idactivofijo, cipersona, fecha, descripcion }),
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+        res.redirect('/reserva');
+    } catch (error) {
+        console.error(error);
+        res.send('ERROR');
+    }
+};
+

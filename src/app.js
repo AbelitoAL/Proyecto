@@ -16,6 +16,7 @@ import Adm from "./routes/persona.js";
 import Acti from "./routes/activo.js";
 
 import Ubicacion from "./routes/ubicacion.js";
+import Mant from "./routes/mantenimiento.js";
 
 
 //como comunicarse con la api:
@@ -67,6 +68,7 @@ app.use(Inicio)
 app.use(Adm)
 app.use(Acti)
 app.use(Ubicacion)
+app.use(Mant)
 
 
 export default app;

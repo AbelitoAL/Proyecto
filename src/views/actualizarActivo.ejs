@@ -1,44 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualizar Activo</title>
+
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="css/estiloForm.css">
+
+    <!----===== Boxicons CSS ===== -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+
+
+    <!--<title>Dashboard Sidebar Menu</title>-->
 </head>
 <%- include('./barramenu'); %>
 <body>
-
     <form action="/actualizarActivo" method="POST">
-        <input type="hidden" name="id" value="<%= id %>">
+    <input type="hidden" name="id" value="<%= id %>">
+    <div id="kt_content" class="content d-flex flex-column flex-column-fluid">
+        <div class="innerMain_content">
+            <div class="container innerMain_container">
 
-        
-        <label for="descripcion">Descripción:</label>
-        <textarea id="descripcion" name="descripcion" required><%= descripcion %></textarea>
-        
-        <label for="diaCompra">diaCompra:</label>
-        <input type="text" id="diaCompra" name="diaCompra" value="<%= diaCompra %>" required> 
+                <div class="tab-content" id="myTabContent">
+                     <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h1 class="page-title"><i class="bi bi-arrow-clockwise"></i> Actualizar Activo</h1>
+                            </div>
+                            <h2></h2>
+                            <h2></h2>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-md-3 col-xxl-3 col-form-label text-sm-end"
+                                    for="descripcion">Descripción</label>
+                                <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
+                                    <textarea class="form-control" cols="20" data-val="true"
+                                        data-val-length="Maximum length is 1000." data-val-length-max="1000"
+                                        id="descripcion" maxlength="1000" name="descripcion" rows="4" required><%= descripcion %></textarea>
+                                    <span class="field-validation-valid" data-valmsg-for="Notes"
+                                        data-valmsg-replace="true" required=""></span>
+                                </div>
+                            </div>
 
-        <label for="costo">costo:</label>
-        <input type="text" id="costo" name="costo" value="<%= costo %>" required>
-        
-        <label for="lugarCompra">lugarCompra:</label>
-        <input type="text" id="lugarCompra" name="lugarCompra" value="<%= lugarCompra %>" required>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-md-3 col-xxl-3 col-form-label text-sm-end"
+                                    for="diaCompra">diaCompra</label>
+                                <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
+                                    <input class="form-control" id="diaCompra" name="diaCompra" placeholder="Ingrese una fecha de inicio" type="date" style="margin-right: 10px;" value="<%= diaCompra %>" required>
+            
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-md-3 col-xxl-3 col-form-label text-sm-end"
+                                    for="lugarCompra">LugarCompra</label>
+                                <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
+                                    <input class="form-control" data-val="true" id="lugarCompra"
+                                        name="lugarCompra" type="text" value="<%= lugarCompra %>" required />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-md-3 col-xxl-3 col-form-label text-sm-end"
+                                    for="costo">costo</label>
+                                <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
+                                    <div class="input-group">
+                                        <span class="input-group-text"></span>
+                                        <input placeholder="Costo" class="form-control" data-val="true"
+                                            id="Phone" maxlength="20" name="card_number" type="text" value="<%= costo %>" required/>
+                                    </div>
+                                    <span class="field-validation-valid" data-valmsg-for="Phone"
+                                        data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-md-3 col-xxl-3 col-form-label text-sm-end"
+                                    for="marca">marca</label>
+                                <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
+                                    <input class="form-control" data-val="true"
+                                        name="marca" type="text" value="<%= marca %>" required />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-md-3 col-xxl-3 col-form-label text-sm-end"
+                                    for="modelo">modelo</label>
+                                <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
+                                    <input class="form-control" data-val="true"
+                                        name="modelo" type="text" value="<%= modelo %>" required />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-md-3 col-xxl-3 col-form-label text-sm-end"
+                                    for="serial">serial</label>
+                                <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
+                                    <input class="form-control" data-val="true"
+                                        name="serial" type="text" value="<%= serial %>" required />
+                                </div>
+                            </div>
 
-        <label for="marca">marca:</label>
-        <input type="text" id="marca" name="marca" value="<%= marca %>" required>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-md-3 col-xxl-3 col-form-label text-sm-end"
+                                    for="foto">foto</label>
+                                    <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="foto" name="foto" value="<%= foto %>"required>
+                                        </div>
+                                    </div>
+                            </div>
 
-        <label for="modelo">modelo:</label>
-        <input type="text" id="modelo" name="modelo" value="<%= modelo %>" required>
+                            <input type="submit" class="btn btn-secondary" style="margin-left: 900px;"  value="Actualizar">
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
-        <label for="serial">serial:</label>
-        <input type="text" id="serial" name="serial" value="<%= serial %>" required>
-
-        <label for="foto">foto:</label>
-        <input type="text" id="foto" name="foto" value="<%= foto %>" required>
-
-
-        <input type="submit" value="Actualizar">
-    </form>
 </body>
+
 </html>

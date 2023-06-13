@@ -2,205 +2,240 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lista de Activos Fijos</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #F2F8FC;
-      padding: 20px;
-    }
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    .table-container {
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: #fff;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      border-radius: 5px;
-    }
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #F2F8FC;
+          padding: 20px;
+        }
+    
+        .table-container {
+          max-width: 800px;
+          margin: 0 auto;
+          background-color: #fff;
+          padding: 20px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          border-radius: 5px;
+        }
+    
+        h1 {
+          color: #333;
+          margin-bottom: 20px;
+        }
+    
+        .table-row {
+          display: flex;
+          justify-content: space-between;
+          padding: 10px 0;
+          border-bottom: 1px solid #ccc;
+        }
+    
+        .table-header {
+          font-weight: bold;
+        }
+    
+        .table-cell {
+          flex-basis: 12.5%;
+        }
+      </style>
 
-    h1 {
-      color: #333;
-      margin-bottom: 20px;
-    }
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="css/estiloForm.css">
 
-    .table-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 10px 0;
-      border-bottom: 1px solid #ccc;
-    }
+    <!----===== Boxicons CSS ===== -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
 
-    .table-header {
-      font-weight: bold;
-    }
 
-    .table-cell {
-      flex-basis: 12.5%;
-    }
-  </style>
-  <!-- CSS de Bootstrap -->
+    <!--<title>Dashboard Sidebar Menu</title>-->
+
+    <!-- CSS de Bootstrap -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    integrity="sha384-pzjw8f+ua6+1KI6+7X8TXB2ZFpt4Lp6p6L9Jd9qbNo2zB6W8j5+t6d5mxr9yn/c3" crossorigin="anonymous">
+  integrity="sha384-pzjw8f+ua6+1KI6+7X8TXB2ZFpt4Lp6p6L9Jd9qbNo2zB6W8j5+t6d5mxr9yn/c3" crossorigin="anonymous">
 
-  <!-- JavaScript de Bootstrap y jQuery (requerido para el funcionamiento del modal) -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-    integrity="sha384-vh8IgNfkmaWpC6Bd4WMLTkbvj8RtbhQQNh4eVUQuKA9ScJN/mWmKn3B+2L7sPOU6"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-    integrity="sha384-pzjw8f+ua6+1KI6+7X8TXB2ZFpt4Lp6p6L9Jd9qbNo2zB6W8j5+t6d5mxr9yn/c3"
-    crossorigin="anonymous"></script>
-  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i&display=swap">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
-  <script type="text/javascript" src="modal.js"></script>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
+<!-- JavaScript de Bootstrap y jQuery (requerido para el funcionamiento del modal) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+  integrity="sha384-vh8IgNfkmaWpC6Bd4WMLTkbvj8RtbhQQNh4eVUQuKA9ScJN/mWmKn3B+2L7sPOU6"
+  crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+  integrity="sha384-pzjw8f+ua6+1KI6+7X8TXB2ZFpt4Lp6p6L9Jd9qbNo2zB6W8j5+t6d5mxr9yn/c3"
+  crossorigin="anonymous"></script>
+<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+<script type="text/javascript" src="modal.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+  crossorigin="anonymous"></script>
 </head>
 
 <body>
-  <%- include('./barramenu'); %>
-    <div class="table-container">
-      <h1>Lista de Activos Fijos</h1>
+    <%- include('./barramenu'); %>
+    <form action="/crearActivo" method="POST"></form>
+    <div id="kt_content" class="content d-flex flex-column flex-column-fluid">
+        <div class="innerMain_content">
+            <div class="container innerMain_container">
 
-      <div class="table-row">
-        <div class="table-header">ID</div>
-        <div class="table-header">Descripción</div>
-        <div class="table-header">Día de Compra</div>
-        <div class="table-header">Costo</div>
-        <div class="table-header">Lugar de Compra</div>
-        <div class="table-header">Marca</div>
-        <div class="table-header">Modelo</div>
-        <div class="table-header">Serial</div>
-      </div>
+                <div class="tab-content" id="myTabContent">
+                     <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                     <h1 class="page-title"><i class="bi bi-journal-check"></i> Lista Activos</h1>
+                            </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                               <table id="userList" class="table table-bordered table-hover table-striped">
+                                                    <thead class="thead-light">
+                                                        <tr>
+                                                             <th scope="col">ID</th>
+                                                             <th scope="col">Descripción</th>
+                                                             <th scope="col">Dia</th>
+                                                             <th scope="col">Costo</th>
+                                                             <th scope="col">Lugar</th>
+                                                             <th scope="col">Marca</th>
+                                                             <th scope="col">Modelo</th>
+                                                             <th scope="col">Serial</th>
+                                                             <th scope="col">Action</th>
+                          
+                                                        </tr>
+                                                    </thead>
 
-      <% for (let i = 0; i < activos.length; i++) { %>
-        <div class="table-row">
-          <div class="table-cell">
-            <%= activos[i].id %>
-          </div>
-          <div class="table-cell">
-            <%= activos[i].descripcion %>
-          </div>
-          <div class="table-cell">
-            <%= activos[i].diaCompra %>
-          </div>
-          <div class="table-cell">
-            <%= activos[i].costo %>
-          </div>
-          <div class="table-cell">
-            <%= activos[i].lugarCompra %>
-          </div>
-          <div class="table-cell">
-            <%= activos[i].marca %>
-          </div>
-          <div class="table-cell">
-            <%= activos[i].modelo %>
-          </div>
-          <div class="table-cell">
-            <%= activos[i].serial %>
-          </div>
-          <div class="table-cell">
-            <form action="/eliminarActivo" method="post">
-              <input type="hidden" name="id" value="<%= activos[i].id %>">
-              <button >Eliminar</button>
-            </form>
-          </div>
-          <div class="table-cell">
-            <form action="/renderActualizarActivo" method="post">
-              <input type="hidden" name="id" value="<%= activos[i].id %>">
-              <input type="hidden" name="descripcion" value="<%= activos[i].descripcion %>">
-              <input type="hidden" name="diaCompra" value="<%= activos[i].diaCompra %>">
-              <input type="hidden" name="costo" value="<%= activos[i].costo %>">
-              <input type="hidden" name="lugarCompra" value="<%= activos[i].lugarCompra %>">
-              <input type="hidden" name="marca" value="<%= activos[i].marca %>">
-              <input type="hidden" name="modelo" value="<%= activos[i].modelo %>">
-              <input type="hidden" name="serial" value="<%= activos[i].serial %>">
-              <input type="hidden" name="foto" value="<%= activos[i].foto %>">
-              <button >Actualizar</button>
-            </form>
-          </div>
+                                                    <tbody>
+                                                        <% for (let i = 0; i < activos.length; i++) { %>
+                                                          <tr>
+                                                              <th scope="row"><%= activos[i].id %></th>
+                                                              <td><%= activos[i].descripcion %></td>
+                                                              <td><%= new Date(activos[i].diacompra).toLocaleDateString() %></td>
+                                                              <td><%= activos[i].costo %></td>
+                                                              <td><%= activos[i].lugarcompra %></td>
+                                                              <td><%= activos[i].marca %></td>
+                                                              <td><%= activos[i].modelo %></td>
+                                                              <td><%= activos[i].serial %></td>
+                                                              <td>
+                                                                <div class="table-cell">
+                                                                    <form action="/eliminarActivo" method="post">
+                                                                        <input type="hidden" name="id" value="<%= activos[i].id %>">
+                                                                        <button class="btn btn-dark mr-3">Eliminar</button>
+                                                                  </form>
+                                                              </div>
+                                                                <div class="table-cell">
+                                                                    <form action="/renderActualizarActivo" method="post">
+                                                                        <input type="hidden" name="id" value="<%= activos[i].id %>">
+                                                                        <input type="hidden" name="descripcion" value="<%= activos[i].descripcion %>">
+                                                                        <input type="hidden" name="diaCompra" value="<%= activos[i].diaCompra %>">
+                                                                        <input type="hidden" name="costo" value="<%= activos[i].costo %>">
+                                                                        <input type="hidden" name="lugarCompra" value="<%= activos[i].lugarcompra %>">
+                                                                        <input type="hidden" name="marca" value="<%= activos[i].marca %>">
+                                                                        <input type="hidden" name="modelo" value="<%= activos[i].modelo %>">
+                                                                        <input type="hidden" name="serial" value="<%= activos[i].serial %>">
+                                                                        <input type="hidden" name="foto" value="<%= activos[i].foto %>">
+                                                                        <button class="btn btn-dark mr-3">Actualizar</button>
+                                                                    </form>
+                                                                </div>
+                                                                <form action="/depre" method="get">
+                                                                  <input type="hidden" name="id" value="<%= activos[i].id %>">
+                                                                  <button class="btn btn-dark mr-3">Vista</button>
+                                                            </form>
+                                                            </td>
+                                                          </tr>
+                                                          <% } %>
+                                                      </tbody>
+                                                </table>
+                                         </div>
+
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="form-inline" action="/buscar" method="post" style="margin-top: 20px;">
+                        <div class="form-group" style="display: flex; justify-content: center; align-items: center;">
+                            <button type="submit" class="btn btn-danger" >PDF <i class="bi bi-file-pdf"></i></button>
+                            <button type="submit" class="btn btn-secondary" style="margin-left: 900px;"> Imprimir <i
+                                    class='bx bx-printer'></i></i></button>
+            
+                        </div>
+                    </form>
+                    
+                </div>
+            </div>
         </div>
-      <% } %>
     </div>
 
     <!-- MODAL PARA ELIMINAR activo -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Eliminar Activo</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Estás seguro de eliminar el activo con ID: <span id="activoId"></span>?
-          </div>
-          <div class="modal-footer">
-            <form id="eliminarActivoForm" action="/eliminarActivo" method="post">
-              <input type="hidden" value="activoId" id="activoIdInput">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-              <button type="submit" class="btn btn-primary">Eliminar</button>
-            </form>
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Eliminar Activo</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Estás seguro de eliminar el activo con ID: <span id="activoId"></span>?
+            </div>
+            <div class="modal-footer">
+              <form id="eliminarActivoForm" action="/eliminarActivo" method="post">
+                <input type="hidden" value="activoId" id="activoIdInput">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Eliminar</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    
-    <!-- JavaScript para obtener el ID del activo seleccionado y actualizar el campo del formulario -->
-    <script>
-      $('#exampleModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var activoId = button.data('id');
-        var modal = $(this);
-        modal.find('#activoId').text(activoId);
-        modal.find('#activoIdInput').val(activoId);
-      });
-    
-      $('#eliminarActivoForm').submit(function(e) {
-        e.preventDefault();
-        var form = $(this);
-        var url = form.attr('action');
-        var activoId = form.find('#activoIdInput').val();
-    
-        $.ajax({
-          type: 'post',
-          url: url,
-          data: { activoId: activoId },
-          success: function(response) {
-            alert(response);
-            $('#exampleModal').modal('hide'); // Cerrar el modal después de eliminar el activo
-            location.reload(); // Actualizar la página después de eliminar el activo (opcional)
-          },
-          error: function(error) {
-            console.error(error);
-            alert('Error al eliminar el activo');
-          }
+      
+      <!-- JavaScript para obtener el ID del activo seleccionado y actualizar el campo del formulario -->
+      <script>
+        $('#exampleModal').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget);
+          var activoId = button.data('id');
+          var modal = $(this);
+          modal.find('#activoId').text(activoId);
+          modal.find('#activoIdInput').val(activoId);
         });
-      });
-    </script>
-    
-    
-    
-    
+      
+        $('#eliminarActivoForm').submit(function(e) {
+          e.preventDefault();
+          var form = $(this);
+          var url = form.attr('action');
+          var activoId = form.find('#activoIdInput').val();
+      
+          $.ajax({
+            type: 'post',
+            url: url,
+            data: { activoId: activoId },
+            success: function(response) {
+              alert(response);
+              $('#exampleModal').modal('hide'); // Cerrar el modal después de eliminar el activo
+              location.reload(); // Actualizar la página después de eliminar el activo (opcional)
+            },
+            error: function(error) {
+              console.error(error);
+              alert('Error al eliminar el activo');
+            }
+          });
+        });
+      </script>
+      
 
 </body>
-
-
 
 </html>

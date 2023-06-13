@@ -34,16 +34,24 @@
                     <h4>Inicio</h4>
                 </div>
             </a>
-            <% if(VerAd  || VerAS ) { %>
+            <% if(VerAd  || VerAS || VerM ) { %>
             <a class="has-submenu">
                 <div class="option">
                     <i class='bx bx-extension icon' title="Activos"></i>
                     <h4>Activos</h4>
                 </div>
                 <ul class="submenu">
+                    <% if(VerAd || VerAS) { %>
                     <li><a href="/activo">Lista de Activos</a></li>
                     <li><a href="/crearActivo">Crear Activo</a></li>
                     <li><a href="/formAs">Asignar Activo</a></li>
+                    <li><a href="/crearReserva">Crear Reserva de Activo Fijo</a></li>
+                    <li><a href="/reserva">Ver Reservas de Activos Fijos</a></li>
+                    <%}%>
+                    <% if(VerAd || VerM) { %>
+                    <li><a href="/mantenimiento">Ver Mantenimientos</a></li>
+                    <li><a href="/crearMantenimiento">Crear Mantenimiento</a></li>
+                    <% } %>                   
                 </ul>
             </a>
             <% } %>

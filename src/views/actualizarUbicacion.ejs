@@ -1,30 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualizar Ubicacion</title>
+
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="css/estiloForm.css">
+
+    <!----===== Boxicons CSS ===== -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+
+
+    <!--<title>Dashboard Sidebar Menu</title>-->
 </head>
 <%- include('./barramenu'); %>
 <body>
-
     <form action="/actualizarUbicacion" method="POST">
-        <input type="hidden" name="id" value="<%= id %>">
+    <input type="hidden" name="id" value="<%= id %>">
+    <div id="kt_content" class="content d-flex flex-column flex-column-fluid">
+        <div class="innerMain_content">
+            <div class="container innerMain_container">
 
-        
-        <label for="sitio">Sitio:</label>
-        <textarea id="sitio" name="sitio" required><%= sitio %></textarea>
-        
-        <label for="localizacion">Localizacion:</label>
-        <input type="text" id="localizacion" name="localizacion" value="<%= localizacion %>" required> 
+                <div class="tab-content" id="myTabContent">
+                     <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h1 class="page-title"><i class="bi bi-arrow-clockwise"></i> Actualizar Ubicación</h1>
+                            </div>
+                           <h3></h3>
+                           <h2></h2> 
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-md-3 col-xxl-3 col-form-label text-sm-end"
+                                    for="sitio">Sitio</label>
+                                <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
+                                    <input class="form-control" data-val="true" id="sitio" name="sitio" type="text"
+                                        value="<%= sitio %>" required />
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-md-3 col-xxl-3 col-form-label text-sm-end"
+                                    for="localizacion">Localizacion</label>
+                                <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
+                                        <input class="form-control" data-val="true" id="localizacion" name="localizacion" type="text"
+                                            value="<%= localizacion %>" required />
+                                 </div>
+                            </div>
+                            
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-md-3 col-xxl-3 col-form-label text-sm-end"
+                                    for="departamento">departamento</label>
+                                <div class="col-md-6 col-lg-5 col-xxl-4 col-sm-5">
+                                        <input class="form-control" data-val="true" id="departamento" name="departamento" type="text"
+                                            value="<%= departamento %>" required />
+                                </div>
+                            </div>  
+                            
+                            <input type="submit" class="btn btn-secondary" style="margin-left: 900px;"  value="Actualizar">
 
-        <label for="departamento">departamento:</label>
-        <input type="text" id="departamento" name="departamento" value="<%= departamento %>" required>
-        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
-
-        <input type="submit" value="Actualizar">
-    </form>
 </body>
+
 </html>

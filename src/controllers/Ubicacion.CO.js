@@ -25,7 +25,7 @@ export const createUbicacion = async (req, res) => {
       body: JSON.stringify({ id, sitio, localizacion, departamento }),
       headers: { 'Content-Type': 'application/json' }
     });
-    res.send('ubicacion registrada');
+    res.redirect('/ubicacion');
   } catch (error) {
     console.error(error);
     res.send('ERROR');

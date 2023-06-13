@@ -42,7 +42,7 @@ export const reporte = async(req, res) => {
   const response = await fetch(`https://apisi2.up.railway.app/api/acti`,{
     method: 'GET', // *GET, POST, PUT, DELETE, etc.
     mode: 'cors', // no-cors, *cors, same-origin
-    body: JSON.stringify({ culpable }),
+    
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
     credentials: 'same-origin', // include, *same-origin, omit
 }).then((respueta)=> {
