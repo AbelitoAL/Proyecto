@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="css/estiloA.css">
+
+    <!----===== Boxicons CSS ===== -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+
+</head>
+<%- include('./barramenu') %>
+
+    <body id="body">
+
+        <!-----LISTA----->
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center" style="padding: 10px; margin-top: 2%;">
+                    <h1 class="page-title" style="margin-bottom: 10px;"><i class='bx bx-file-blank'
+                            style="color: rgba(6, 158, 247, 0.849);"></i>Informes de Mantenimientos</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div>
+                <form class="form-inline" action="/generarpdfMant" method="post" style="margin-top: 20px;">
+                    <div class="form-group" style="display: flex; justify-content: center; align-items: center;">
+                        <label for="fechaInicio2" style="margin-right: 10px;">Fecha inicio</label>
+                        <input class="form-control" id="fechaInicio2" name="Inicio"
+                            placeholder="Ingrese una fecha de inicio" type="date" style="margin-right: 10px;">
+                        <label for="fechaFin2" style="margin-right: 10px;">Fecha fin</label>
+                        <input class="form-control" id="fechaFin2" name="Fin" placeholder="Ingrese una fecha de fin"
+                            type="date" style="margin-right: 10px;">
+                        <button type="submit" class="btn btn-primary">PDF <i class="bi bi-filetype-pdf"></i></button>
+                        <button type="reset" class="printbutton btn btn-secondary " style="margin-left: 10px;"> Imprimir
+                            <i class='bx bx-printer'></i></i></button>
+                    </div>
+                </form>
+
+            </div>
+
+
+            <br>
+
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h4 class="mb-0">Listado</h4>
+                            <div>
+                                <input type="button" class="btn btn-dark mr-3" value="Volver" />
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="userList" class="table table-bordered table-hover table-striped">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">ID Mantenimiento</th>
+                                            <th scope="col">ID etiqueta de activo</th>
+                                            <th scope="col">Titulo</th>
+                                            <th scope="col">Descripción</th>
+                                            <th scope="col">Fecha de Inicio</th>
+                                            <th scope="col">Responsable</th>
+                                            <th scope="col">Costo</th>
+                                            <th scope="col">ID del Estado</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <% for (let i=0; i < response.length; i++) { %>
+                                            <tr>
+                                                <td scope="col">
+                                                    <%= response[i].id%>
+                                                </td>
+                                                <td scope="col">
+                                                    <%= response[i].idaf%>
+                                                </td>
+                                                <td scope="col">
+                                                    <%= response[i].titulo %>
+                                                </td>
+                                                <td scope="col">
+                                                    <%= response[i].descripcion %>
+                                                </td>
+                                                <td scope="col">
+                                                    <%= response[i].fechainicio.substring(0,10) %>
+                                                </td>
+                                                <td scope="col">
+                                                    <%= response[i].responsable %>
+                                                </td>
+                                                <td scope="col">
+                                                    <%= response[i].costo %>
+                                                </td>
+                                                <td scope="col">
+                                                    <%= response[i].idestado %>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <script>
+            document.querySelectorAll('.printbutton').forEach(function (element) {
+                element.addEventListener('click', function () {
+                    print();
+                });
+            });
+        </script>
+
+    </body>
+
+
+
+</html>

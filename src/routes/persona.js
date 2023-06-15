@@ -1,8 +1,8 @@
 import { Router } from "express" 
 import { AsigAct, Muser, RenderAs, RenderMuser, RenderformE, createE } from "../controllers/persona.CO.js";
 import { logeado } from "../lib/privado.js";
-import { DeleteE, Memp, RenderL,ModE, renderBit, reporte, renderBitF, RenderC, cambiarC, Renderde, deprecalculo } from "../controllers/index.CO.js";
-import { generarPDF } from "../controllers/reportes.controller.js";
+import { DeleteE, Memp, RenderL,ModE, renderBit, reporte, renderBitF, RenderC, cambiarC, Renderde, deprecalculo, reporteMant } from "../controllers/index.CO.js";
+import { generarPDF, generarPDFMant } from "../controllers/reportes.controller.js";
 
 
 
@@ -38,6 +38,10 @@ Adm.post('/generarpdf',logeado, generarPDF)
 Adm.get('/depre', Renderde)
 
 Adm.post('/depre', deprecalculo)
+
+Adm.get('/ReporteMant',logeado, reporteMant)
+
+Adm.post('/generarpdfMant',logeado, generarPDFMant)
 
 
 export default Adm

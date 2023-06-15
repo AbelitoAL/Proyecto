@@ -51,6 +51,20 @@ export const reporte = async(req, res) => {
   res.render('reportes.ejs',{response});
 };
 
+export const reporteMant = async(req, res) => {
+  const culpable = req.user.ci
+  const response = await fetch(`https://apisi2.up.railway.app/api/mant`,{
+    method: 'GET', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+}).then((respueta)=> {
+    return respueta.json()
+}) 
+  res.render('reporteMant.ejs',{response});
+};
+
 
 export const renderBit = async(req, res) => {
   const response = await fetch(`https://apisi2.up.railway.app/api/bitac`,{
