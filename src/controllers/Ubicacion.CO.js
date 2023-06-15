@@ -5,7 +5,7 @@ export const getUbicaciones = async (req, res) => {
   try {
     const response = await fetch('https://apisi2.up.railway.app/api/ubi');
     const data = await response.json();
-    res.render('verUbicaciones',{ ubicacion: data })
+    res.render('verUbicaciones', { ubicacion: data })
   } catch (error) {
     console.error(error);
     res.send('ERROR');
@@ -25,6 +25,14 @@ export const createUbicacion = async (req, res) => {
       body: JSON.stringify({ id, sitio, localizacion, departamento }),
       headers: { 'Content-Type': 'application/json' }
     });
+    const mensaje = "Se creo el departamento: " + departamento
+    const culpable = req.user.ci
+    const respons = await fetch('https://apisi2.up.railway.app/bita/A', {
+      method: 'post',
+      body: JSON.stringify({ mensaje, culpable }),
+      headers: { 'Content-Type': 'application/json' }
+    });
+
     res.redirect('/ubicacion');
   } catch (error) {
     console.error(error);
@@ -44,18 +52,24 @@ export const getUbicacionByID = async (req, res) => {
   }
 };
 export const renderUpdateUbicacion = async (req, res) => {
-  console.log(req.body);
   const { id, sitio, localizacion, departamento } = req.body;
   res.render('actualizarUbicacion', { id, sitio, localizacion, departamento })
 }
 // Controlador para actualizar la información de un ubicacion
 export const updateUbicacion = async (req, res) => {
-  console.log(req.body);
   try {
     const { id, sitio, localizacion, departamento } = req.body;
     const response = await fetch(`https://apisi2.up.railway.app/api/ubi/${req.body.id}`, {
       method: 'put',
       body: JSON.stringify({ sitio, localizacion, departamento }),
+      headers: { 'Content-Type': 'application/json' }
+    });
+
+    const mensaje = "Se Modifico datos de la siguiente ubicacion: " + req.body.id
+    const culpable = req.user.ci
+    const respons = await fetch('https://apisi2.up.railway.app/bita/A', {
+      method: 'post',
+      body: JSON.stringify({ mensaje, culpable }),
       headers: { 'Content-Type': 'application/json' }
     });
     res.redirect('/ubicacion')
@@ -70,6 +84,13 @@ export const deleteUbicacion = async (req, res) => {
   try {
     const response = await fetch(`https://apisi2.up.railway.app/api/ubi/${req.body.id}`, {
       method: 'delete'
+    });
+    const mensaje = "Se Elimino la Ubicacion con id: "+ req.body.id
+    const culpable = req.user.ci
+    const respons = await fetch('https://apisi2.up.railway.app/bita/A', {
+      method: 'post',
+      body: JSON.stringify({ mensaje, culpable }),
+      headers: { 'Content-Type': 'application/json' }
     });
     res.redirect('/ubicacion')
   } catch (error) {

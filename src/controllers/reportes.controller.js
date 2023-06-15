@@ -1,4 +1,5 @@
 
+import { response } from "express";
 import fetch from "node-fetch";
 
 export const generarPDF = async (req, res) => {
@@ -26,6 +27,14 @@ export const generarPDF = async (req, res) => {
     topdf.file = 'Reporte de Activos.pdf';
     topdf.titulo = 'Reporte - Activos';
 
+    const mensaje = "Se genero un reporte de activos"
+    const culpable = req.user.ci
+    const response = await fetch('https://apisi2.up.railway.app/bita/A', {
+      method: 'post',
+      body: JSON.stringify({ mensaje,culpable }),
+      headers: { 'Content-Type': 'application/json' }
+    });
+    
   
   res.render('pdf.ejs', topdf);
 };
@@ -54,6 +63,14 @@ export const generarPDFMant = async (req, res) => {
     topdf.body = mat;
     topdf.file = 'Reporte de Mantenimientos.pdf';
     topdf.titulo = 'Reporte - Mantenimientos';
+
+    const mensaje = "Se genero un reporte de Mantenimiento"
+    const culpable = req.user.ci
+    const response = await fetch('https://apisi2.up.railway.app/bita/A', {
+      method: 'post',
+      body: JSON.stringify({ mensaje,culpable }),
+      headers: { 'Content-Type': 'application/json' }
+    });
 
   
   res.render('pdfMant.ejs', topdf);

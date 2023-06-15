@@ -2,7 +2,6 @@ import fetch from "node-fetch";
 
 export const createActivo = async (req, res) => {
     try {
-        console.log(req.body);
         const nuevoActivo = {
             id: req.body.id,
             descripcion: req.body.descripcion,
@@ -21,8 +20,14 @@ export const createActivo = async (req, res) => {
             headers: { 'Content-Type': 'application/json' }
         });
 
-        const data = console.log(response);
-        console.log(data);
+        const mensaje = "Se Creo Un Nuevo Activo"
+        const culpable = req.user.ci
+        const respons = await fetch('https://apisi2.up.railway.app/bita/A', {
+            method: 'post',
+            body: JSON.stringify({ mensaje, culpable }),
+            headers: { 'Content-Type': 'application/json' }
+        });
+
         res.redirect('/crearActivo');
     } catch (error) {
         console.error(error);
@@ -36,7 +41,6 @@ export const renderCreateActivo = async (req, res) => {
 
 export const getActivos = async (req, res) => {
     try {
-        //const response = await fetch('http://127.0.0.1:8000/api/acti');
         const response = await fetch('https://apisi2.up.railway.app/api/acti');
         const data = await response.json();
         res.render('verActivos', { activos: data });
@@ -105,6 +109,14 @@ export const updateActivo = async (req, res) => {
             headers: { 'Content-Type': 'application/json' }
         });
 
+        const mensaje = "Se genero Actualizo el activo: " + req.body.id + " con nombre: " + descripcion
+        const culpable = req.user.ci
+        const respons = await fetch('https://apisi2.up.railway.app/bita/A', {
+            method: 'post',
+            body: JSON.stringify({ mensaje, culpable }),
+            headers: { 'Content-Type': 'application/json' }
+        });
+
         res.redirect('/activo');
     } catch (error) {
         console.error(error);
@@ -120,6 +132,13 @@ export const deleteActivo = async (req, res) => {
         });
 
         if (response.ok) {
+            const mensaje = "Se Elimino el Activo: " + req.body.id
+            const culpable = req.user.ci
+            const response = await fetch('https://apisi2.up.railway.app/bita/A', {
+                method: 'post',
+                body: JSON.stringify({ mensaje, culpable }),
+                headers: { 'Content-Type': 'application/json' }
+            });
             res.redirect('/activo');
         } else {
             console.error('Error al eliminar el activo');
@@ -134,7 +153,6 @@ export const deleteActivo = async (req, res) => {
 
 export const createReserva = async (req, res) => {
     try {
-        console.log(req.body);
         const nuevaReserva = {
             idActivoFijo: req.body.idActivoFijo,
             ciPersona: req.body.ciPersona,
@@ -148,6 +166,14 @@ export const createReserva = async (req, res) => {
             headers: { 'Content-Type': 'application/json' }
         });
 
+        const mensaje = "Se Realizo una Reserva para el Activo: " + idActivoFijo + "para la siguiente Fecha: " + req.body.fecha
+        const culpable = req.user.ci
+        const respons = await fetch('https://apisi2.up.railway.app/bita/A', {
+            method: 'post',
+            body: JSON.stringify({ mensaje, culpable }),
+            headers: { 'Content-Type': 'application/json' }
+        });
+
         res.redirect('/reserva');
     } catch (error) {
         console.error(error);
@@ -157,63 +183,65 @@ export const createReserva = async (req, res) => {
 
 export const renderCreateReserva = async (req, res) => {
     try {
-      const response = await fetch('https://apisi2.up.railway.app/api/acti');
-      const data = await response.json();
-  
-      const clientes = await fetch(`https://apisi2.up.railway.app/api/user`,{
+        const response = await fetch('https://apisi2.up.railway.app/api/acti');
+        const data = await response.json();
+
+        const clientes = await fetch(`https://apisi2.up.railway.app/api/user`, {
             method: 'get', // *GET, POST, PUT, DELETE, etc.
             mode: 'cors', // no-cors, *cors, same-origin
             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
             credentials: 'same-origin', // include, *same-origin, omit
-        }).then((dataClientes)=> {
+        }).then((dataClientes) => {
             return dataClientes.json()
         });
-      const empleados = await fetch(`https://apisi2.up.railway.app/api/emp`,{
+        const empleados = await fetch(`https://apisi2.up.railway.app/api/emp`, {
             method: 'get', // *GET, POST, PUT, DELETE, etc.
             mode: 'cors', // no-cors, *cors, same-origin
             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
             credentials: 'same-origin', // include, *same-origin, omit
-        }).then((dataEmpleados)=> {
+        }).then((dataEmpleados) => {
             return dataEmpleados.json()
         });
-      const tipoPersona = ['cliente', 'empleado'];
+        const tipoPersona = ['cliente', 'empleado'];
 
-    //   res.render('crearReserva', { activosFijos: data, clientes: dataClientes, empleados: dataEmpleados, tipoPersona: tipoPersona});
-       res.render('crearReserva', {activosFijos:data, clientes, empleados, tipoPersona: tipoPersona })
-    // res.render('crearReserva', { activosFijos: data, personas: personas, tipoPersona: tipoPersona });
+        //   res.render('crearReserva', { activosFijos: data, clientes: dataClientes, empleados: dataEmpleados, tipoPersona: tipoPersona});
+        res.render('crearReserva', { activosFijos: data, clientes, empleados, tipoPersona: tipoPersona })
+        // res.render('crearReserva', { activosFijos: data, personas: personas, tipoPersona: tipoPersona });
     } catch (error) {
-      console.error(error);
-      res.send('ERROR SS');
+        console.error(error);
+        res.send('ERROR SS');
     }
 };
 
 export const getReservas = async (req, res) => {
     try {
-        //const response = await fetch('http://127.0.0.1:8000/api/acti');
         const response = await fetch('https://apisi2.up.railway.app/api/res');
-        console.log(response.json);
         const data = await response.json();
-        console.log(data);
         res.render('verReservas', { reservas: data });
     } catch (error) {
         console.error(error);
-        res.send('ERROR SSSSSSSS');
+        res.send('ERROR');
     }
 };
-  
+
 export const renderUpdateReserva = async (req, res) => {
-    console.log(req.body);
     const { id, idactivofijo, cipersona, fecha, descripcion } = req.body;
-    res.render('actualizarReserva', {id,  idactivofijo, cipersona, fecha, descripcion  })
+    res.render('actualizarReserva', { id, idactivofijo, cipersona, fecha, descripcion })
 };
 
 export const updateReserva = async (req, res) => {
     try {
-        const {  idactivofijo, cipersona, fecha, descripcion } = req.body;
-        console.log(idactivofijo);
+        const { idactivofijo, cipersona, fecha, descripcion } = req.body;
         const response = await fetch(`https://apisi2.up.railway.app/api/res/${req.body.id}`, {
             method: 'put',
-            body: JSON.stringify({  idactivofijo, cipersona, fecha, descripcion }),
+            body: JSON.stringify({ idactivofijo, cipersona, fecha, descripcion }),
+            headers: { 'Content-Type': 'application/json' }
+        });
+        const mensaje = "Se Actualizo el Activo: "+ idactivofijo
+        const culpable = req.user.ci
+        const respons = await fetch('https://apisi2.up.railway.app/bita/A', {
+            method: 'post',
+            body: JSON.stringify({ mensaje, culpable }),
             headers: { 'Content-Type': 'application/json' }
         });
 
