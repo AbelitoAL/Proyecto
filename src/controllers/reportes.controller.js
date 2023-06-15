@@ -1,4 +1,6 @@
 
+import fetch from "node-fetch";
+
 export const generarPDF = async (req, res) => {
   const Inicio = req.body.Inicio
   const Fin = req.body.Fin
