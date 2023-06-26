@@ -1,5 +1,4 @@
 import express from "express"
-import fetch from "node-fetch";
 import { dirname,join } from "path";
 import Inicio from "./routes/inicio.js";
 import morgan from "morgan";
@@ -9,24 +8,13 @@ import passport from 'passport';
 import session from 'express-session';
 import flash from 'connect-flash';
 import helpers from "./lib/helpers.js";
-
-
 import './lib/passport.js'
 import Adm from "./routes/persona.js";
 import Acti from "./routes/activo.js";
-
 import Ubicacion from "./routes/ubicacion.js";
 import Mant from "./routes/mantenimiento.js";
 
 
-//como comunicarse con la api:
-/*fetch("https://reqres.in/api/users?page=2")
-    .then((respueta)=> {
-        return respueta.json()
-    }).then((resp) => {
-        console.log(resp)
-    })
-*/
 const app = express()
 
 app.use(session({

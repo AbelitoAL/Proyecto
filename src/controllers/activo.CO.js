@@ -1,31 +1,28 @@
 import fetch from "node-fetch";
+import * as BlobUtil from 'blob-util';
+
+
 
 export const createActivo = async (req, res) => {
     try {
-        const nuevoActivo = {
-            id: req.body.id,
-            descripcion: req.body.descripcion,
-            diaCompra: req.body.diaCompra,
-            costo: req.body.costo,
-            lugarCompra: req.body.lugarCompra,
-            marca: req.body.marca,
-            modelo: req.body.modelo,
-            serial: req.body.serial,
-            foto: req.body.foto
-        };
 
-        const response = await fetch('https://apisi2.up.railway.app/api/acti', {
-            method: 'post',
-            body: JSON.stringify(nuevoActivo),
-            headers: { 'Content-Type': 'application/json' }
-        });
+        const nuevoActivo = new FormData();
+        nuevoActivo.append('id', req.body.id);
+        nuevoActivo.append('descripcion', req.body.descripcion);
+        nuevoActivo.append('diaCompra', req.body.diaCompra);
+        nuevoActivo.append('costo', req.body.costo);
+        nuevoActivo.append('lugarCompra', req.body.lugarCompra);
+        nuevoActivo.append('marca', req.body.marca);
+        nuevoActivo.append('modelo', req.body.modelo);
+        nuevoActivo.append('serial', req.body.serial);
+        nuevoActivo.append('img', req.file);
 
-        const mensaje = "Se Creo Un Nuevo Activo"
-        const culpable = req.user.ci
-        const respons = await fetch('https://apisi2.up.railway.app/bita/A', {
-            method: 'post',
-            body: JSON.stringify({ mensaje, culpable }),
-            headers: { 'Content-Type': 'application/json' }
+        const response = await fetch('http://localhost:5000/api/acti', {
+            method: 'POST',
+            body: nuevoActivo,
+            headers: {
+                'Content-Type': 'multipart/form-data' // Asegúrate de usar el Content-Type correcto
+              }
         });
 
         res.redirect('/crearActivo');
@@ -34,6 +31,8 @@ export const createActivo = async (req, res) => {
         res.send('ERROR');
     }
 };
+
+
 
 export const renderCreateActivo = async (req, res) => {
     res.render('crearActivo')
@@ -237,7 +236,7 @@ export const updateReserva = async (req, res) => {
             body: JSON.stringify({ idactivofijo, cipersona, fecha, descripcion }),
             headers: { 'Content-Type': 'application/json' }
         });
-        const mensaje = "Se Actualizo el Activo: "+ idactivofijo
+        const mensaje = "Se Actualizo el Activo: " + idactivofijo
         const culpable = req.user.ci
         const respons = await fetch('https://apisi2.up.railway.app/bita/A', {
             method: 'post',
