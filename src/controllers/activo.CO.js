@@ -8,7 +8,6 @@ export const createActivo = async (req, res) => {
         const __dirname = dirname(fileURLToPath(import.meta.url));
         const imagePath = join(__dirname, '../public/img', req.file.filename);
         const foto = fs.readFileSync(imagePath);
-
         const formData = new FormData();
         formData.append('id', req.body.id);
         formData.append('descripcion', req.body.descripcion);
@@ -19,13 +18,11 @@ export const createActivo = async (req, res) => {
         formData.append('modelo', req.body.modelo);
         formData.append('serial', req.body.serial);
         formData.append('img', new Blob([foto]), req.file.originalname);
-
         const response = await axios.post('https://apisi2.up.railway.app/api/acti', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
         });
-
         const mensaje = "Se creó un nuevo activo";
         const culpable = req.user.ci;
         const respons = await fetch('https://apisi2.up.railway.app/bita/A', {
@@ -33,7 +30,6 @@ export const createActivo = async (req, res) => {
             body: JSON.stringify({ mensaje, culpable }),
             headers: { 'Content-Type': 'application/json' }
         });
-
         res.redirect('/crearActivo');
     } catch (error) {
         console.error(error);
