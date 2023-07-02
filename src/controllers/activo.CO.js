@@ -1,28 +1,37 @@
-import fetch from "node-fetch";
-import * as BlobUtil from 'blob-util';
-
-
+import axios from 'axios';
+import fs from 'fs';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
 
 export const createActivo = async (req, res) => {
     try {
+        const __dirname = dirname(fileURLToPath(import.meta.url));
+        const imagePath = join(__dirname, '../public/img', req.file.filename);
+        const foto = fs.readFileSync(imagePath);
 
-        const nuevoActivo = new FormData();
-        nuevoActivo.append('id', req.body.id);
-        nuevoActivo.append('descripcion', req.body.descripcion);
-        nuevoActivo.append('diaCompra', req.body.diaCompra);
-        nuevoActivo.append('costo', req.body.costo);
-        nuevoActivo.append('lugarCompra', req.body.lugarCompra);
-        nuevoActivo.append('marca', req.body.marca);
-        nuevoActivo.append('modelo', req.body.modelo);
-        nuevoActivo.append('serial', req.body.serial);
-        nuevoActivo.append('img', req.file);
+        const formData = new FormData();
+        formData.append('id', req.body.id);
+        formData.append('descripcion', req.body.descripcion);
+        formData.append('diaCompra', req.body.diaCompra);
+        formData.append('costo', req.body.costo);
+        formData.append('lugarCompra', req.body.lugarCompra);
+        formData.append('marca', req.body.marca);
+        formData.append('modelo', req.body.modelo);
+        formData.append('serial', req.body.serial);
+        formData.append('img', new Blob([foto]), req.file.originalname);
 
-        const response = await fetch('http://localhost:5000/api/acti', {
-            method: 'POST',
-            body: nuevoActivo,
+        const response = await axios.post('https://apisi2.up.railway.app/api/acti', formData, {
             headers: {
-                'Content-Type': 'multipart/form-data' // Asegúrate de usar el Content-Type correcto
-              }
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+
+        const mensaje = "Se creó un nuevo activo";
+        const culpable = req.user.ci;
+        const respons = await fetch('https://apisi2.up.railway.app/bita/A', {
+            method: 'POST',
+            body: JSON.stringify({ mensaje, culpable }),
+            headers: { 'Content-Type': 'application/json' }
         });
 
         res.redirect('/crearActivo');
@@ -31,8 +40,6 @@ export const createActivo = async (req, res) => {
         res.send('ERROR');
     }
 };
-
-
 
 export const renderCreateActivo = async (req, res) => {
     res.render('crearActivo')

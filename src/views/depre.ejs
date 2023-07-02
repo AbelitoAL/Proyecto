@@ -66,6 +66,7 @@
         </nav>
 
         <div class="tab-content mt-2" id="myTabContent">
+
             <div class="tab-pane fade show active" id="opcion1" role="tabpanel" aria-labelledby="opcion1-tab">
                 <h3>Depreciación</h3>
                 <p>Los valores de depreciación de los activos son obligatorios.</p>
@@ -75,21 +76,22 @@
                     <div class="row">
                         <div class="col-md">
                             <button type="submit" class="btn btn-primary d-inline-block" data-toggle="modal"
-                                data-target="#exampleModal">
-                                <i class='bx bx-plus'></i>
-                                Administrar
-                            </button>
-                            <input type="button" class="btn btn-dark d-inline-block mr-3" value="Volver" />
-                        </div>
+                            data-target="#exampleModal">
+                            <i class='bx bx-plus'></i>
+                            Administrar
+                        </button>
+                        <input type="button" class="btn btn-dark d-inline-block mr-3" value="Volver" />
                     </div>
                 </div>
-                <% if (datos.length> 0) { %>
-                    <div class="tab-content mt-3" id="myTabContent">
-                        <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table id="userList" class="table table-bordered table-hover table-striped">
+            </div>
+
+            <% if (datos.length> 0) { %>
+            <div class="tab-content mt-3" id="myTabContent">
+                <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="userList" class="table table-bordered table-hover table-striped">
                                             <thead class="thead-light">
                                                 <tr>
                                                     <th scope="col">#</th>
@@ -137,22 +139,19 @@
 
                     </div>
                     <br>
-
-
-
-                        <!--GRÁFICA ESTADISTICA-->
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h2>Estadísticas anuales de depreciación</h2>
-
-                                </div>
+                    <!--GRÁFICA ESTADISTICA-->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h2>Estadísticas anuales de depreciación</h2>
+                                
                             </div>
-                            <div class="grafica" id="myfirstchart"></div>
                         </div>
-                        <script type="text/javascript" src="libs/lineas.js"></script>
-                        <br>
-                        <%}%>
+                        <div class="grafica" id="myfirstchart"></div>
+                    </div>
+                    <script type="text/javascript" src="libs/lineas.js"></script>
+                    <br>
+                    <%}%>
                         <% if(data.length> 0) { %>
                             <!--SEGUNDA TABLA-->
                             <div class="tab-content mt-3" id="myTabContent">
@@ -221,13 +220,11 @@
 
                 <div class="tab-pane fade" id="opcion2" role="tabpanel" aria-labelledby="opcion2-tab">
                     <h3>Garantía</h3>
-
                     <!-- Button trigger modal -->
                     <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#nuevoModal"><i
                             class='bx bx-plus'></i>
                         Agregar nuevo
                     </button>
-
                     <div class="tab-content mt-3" id="myTabContent">
                         <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
                             <div class="card">
