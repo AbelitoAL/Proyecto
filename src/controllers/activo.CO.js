@@ -44,9 +44,9 @@ export const renderCreateActivo = async (req, res) => {
 
 export const getActivos = async (req, res) => {
     try {
-        const activos = await fetch('https://apisi2.up.railway.app/api/acti');
-        console.log(activos)
-        res.render('verActivos', { activos });
+        const response = await fetch('https://apisi2.up.railway.app/api/acti');
+        const data = await response.json();
+        res.render('verActivos', { activos: data });
     } catch (error) {
         console.error(error);
         res.send('ERROR');
