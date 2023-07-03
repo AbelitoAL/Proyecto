@@ -2,6 +2,7 @@ import axios from 'axios';
 import fs from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
+import fetch from "node-fetch";
 
 export const createActivo = async (req, res) => {
     try {
