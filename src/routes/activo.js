@@ -35,4 +35,6 @@ Acti.get('/reserva', getReservas)
 Acti.post('/renderActualizarReserva',renderUpdateReserva)
 Acti.post('/actualizarReserva',updateReserva)
 
+Acti.post('/AñadirG')
+
 export default Acti

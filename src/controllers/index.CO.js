@@ -7,13 +7,18 @@ export const slash = (req, res) => {
 };
 
 
-export const Renderde = (req, res) => {
+export const Renderde = async(req, res) => {
+  const Activo = await fetch(`https://apisi2.up.railway.app/api/acti/${req.body.id}`);
+  const garantia = await fetch(`https://apisi2.up.railway.app/api/Gacti/${req.body.id}`);
+  const id = req.body.id
   const datos = []
   const data = []
-  res.render('depre.ejs', { datos, data });
+  res.render('depre.ejs', { datos, data, Activo, garantia,id });
 };
 
-export const deprecalculo = (req, res) => {
+export const deprecalculo = async(req, res) => {
+  const Activo = await fetch(`https://apisi2.up.railway.app/api/acti/${req.body.id}`);
+  const garantia = await fetch(`https://apisi2.up.railway.app/api/Gacti/${req.body.id}`);
   let data = []
 
   const fecha = req.body.fecha
@@ -33,7 +38,7 @@ export const deprecalculo = (req, res) => {
   }
 
 
-  res.render('depre.ejs', { datos, data });
+  res.render('depre.ejs', { datos, data,Activo, garantia });
 };
 
 
@@ -242,4 +247,16 @@ export const cerrarSesion = async (req, res) => {
     }
     res.redirect('/');
   });
+};
+
+export const Renderbackup = async(req, res) => {
+  const ci = req.user.ci
+  const response = await fetch(`https://apisi2.up.railway.app/backupV/${req.user.ci}`);
+  res.render('BackUp.ejs', {response,ci});
+};
+
+export const RealizarB  = async(req, res) => {
+  const ci = req.user.ci
+  const response = await fetch(`https://apisi2.up.railway.app/backup/${req.user.ci}`);
+  res.redirect('/home');
 };

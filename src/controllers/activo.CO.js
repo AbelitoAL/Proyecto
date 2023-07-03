@@ -43,9 +43,9 @@ export const renderCreateActivo = async (req, res) => {
 
 export const getActivos = async (req, res) => {
     try {
-        const response = await fetch('https://apisi2.up.railway.app/api/acti');
-        const data = await response.json();
-        res.render('verActivos', { activos: data });
+        const activos = await fetch('https://apisi2.up.railway.app/api/acti');
+        console.log(activos)
+        res.render('verActivos', { activos });
     } catch (error) {
         console.error(error);
         res.send('ERROR');
@@ -76,7 +76,7 @@ export const getGarActivo = async (req, res) => {
 
 export const getActivobyID = async (req, res) => {
     try {
-        const response = await fetch(`https://mi-api.com/activos-fijos/${req.params.id}`);
+        const response = await fetch(`https://apisi2.up.railway.app/api/acti/${req.params.id}`);
         const data = await response.json();
         res.status(200).json(data);
     } catch (error) {
@@ -97,7 +97,6 @@ export const getActivobySerial = async (req, res) => {
 };
 
 export const renderUpdateActivo = async (req, res) => {
-    console.log(req.body);
     const { id, descripcion, diaCompra, costo, lugarCompra, marca, modelo, serial, foto } = req.body;
     res.render('actualizarActivo', { id, descripcion, diaCompra, costo, lugarCompra, marca, modelo, serial, foto })
 };
@@ -127,7 +126,6 @@ export const updateActivo = async (req, res) => {
 };
 
 export const deleteActivo = async (req, res) => {
-    console.log(req.body);
     try {
         const response = await fetch(`https://apisi2.up.railway.app/api/acti/${req.body.id}`, {
             method: 'delete'

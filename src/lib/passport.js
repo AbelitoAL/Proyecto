@@ -11,6 +11,7 @@ passport.use('local.login', new Strategy.Strategy({
     passReqToCallback: true
 }, async (req, UsuI, pass, done) => {
     try {
+        console.log(pass)
         const response = await fetch(`https://apisi2.up.railway.app/api/usuar/${UsuI}`, {
             method: 'GET', // *GET, POST, PUT, DELETE, etc.
             mode: 'cors', // no-cors, *cors, same-origin
@@ -19,7 +20,9 @@ passport.use('local.login', new Strategy.Strategy({
         }).then((respueta) => {
             return respueta.json()
         })
+        console.log(await helpers.descriptar(pass, response[0].contrasena) )
         if (response.length > 0) {
+            
             if (UsuI === response[0].usuario && await helpers.descriptar(pass, response[0].contrasena)) { // ¿existe algun Usuario?
                 const culpable = response[0].ci
             await fetch(`https://apisi2.up.railway.app/api/I`, {
