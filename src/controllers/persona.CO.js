@@ -69,7 +69,7 @@ export const createE = async (req, res) => {
 
 export const RenderAs = async (req, res) => {
   try {
-    const activos = await fetch(`https://apisi2.up.railway.app/api/Gactivo`, {
+    const activos = await fetch(`https://apisi2.up.railway.app/api/acti`, {
       method: 'get', // *GET, POST, PUT, DELETE, etc.
       mode: 'cors', // no-cors, *cors, same-origin
       cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached

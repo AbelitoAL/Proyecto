@@ -21,7 +21,7 @@ export const generarPDF = async (req, res) => {
 
     let mat = [];
     rows.forEach((element, index, array) => {
-      mat.push([element.id, element.descripcion, element.diacompra, element.lugarcompra, element.costo]);
+      mat.push([element.id, element.descripcion, element.diacompra.substring(0,10), element.lugarcompra, element.costo]);
     });
     topdf.body = mat;
     topdf.file = 'Reporte de Activos.pdf';
