@@ -187,9 +187,26 @@ export const RenderG = (req, res) => {
   res.render('gestionarA.ejs');
 };
 
-export const home = (req, res) => {
+export const home = async(req, res) => {
+  const response = await fetch('https://apisi2.up.railway.app/api/acti');
+  const data = await response.json();
+  const respons = await fetch('https://apisi2.up.railway.app/api/actiCM');
+  const dataa = await respons.json();
+  const Erepa = dataa.cantidad_resultados
+  var cant = 0
+  var total = 0
+  var totalf = 0
+  var y = new Date().getFullYear();
+  console.log(y)
+for (const objeto of data) {
+  if(objeto.diacompra.substring(0,4) == y){
+    totalf = totalf + objeto.costo
+  }
+  total = total + objeto.costo
+  cant++  
+}
   const usuario = req.user.nombre
-  res.render('home.ejs', { usuario });
+  res.render('home.ejs', { usuario,cant,total,totalf,Erepa });
 };
 
 export const renderregister = async (req, res) => {
