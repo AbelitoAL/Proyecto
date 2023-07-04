@@ -1,6 +1,6 @@
 
 import { Router } from "express" 
-import { createActivo, createReserva, deleteActivo, getActivos, getReservas, renderCreateActivo, renderCreateReserva, renderUpdateActivo, renderUpdateReserva, updateActivo, updateReserva } from '../controllers/activo.CO.js';
+import { crearGarantia, createActivo, createReserva, deleteActivo, deleteG, getActivos, getReservas, renderCreateActivo, renderCreateReserva, renderUpdateActivo, renderUpdateReserva, updateActivo, updateReserva } from '../controllers/activo.CO.js';
 import { logeado } from '../lib/privado.js';
 import {dirname, join} from 'path';
 import {fileURLToPath} from 'url';
@@ -35,6 +35,8 @@ Acti.get('/reserva', getReservas)
 Acti.post('/renderActualizarReserva',renderUpdateReserva)
 Acti.post('/actualizarReserva',updateReserva)
 
-Acti.post('/AñadirG')
+Acti.post('/Agarantia',crearGarantia)
+
+Acti.post('/DeleteG',deleteG)
 
 export default Acti

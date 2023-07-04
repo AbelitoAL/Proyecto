@@ -43,545 +43,515 @@
 
 </head>
 <%- include('./barramenu'); %>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 text-center" style="padding: 10px; margin-top: 2%;">
-                <h1 class="page-title" style="margin-bottom: 10px;"><i class='bx bx-extension icon'
-                        style="color: rgba(6, 158, 247, 0.849);"></i> Vista de activos</h1>
-            </div>
-        </div>
-    </div>
-    <div class="container">
 
-        <nav class="nav nav-tabs mt-2" id="myTabs">
-            <a class="nav-link active" id="opcion1-tab" data-toggle="tab" href="#opcion1" role="tab"
-                aria-controls="opcion1" aria-selected="true">Depreciación</a>
-            <a class="nav-link" id="opcion2-tab" data-toggle="tab" href="#opcion2" role="tab" aria-controls="opcion2"
-                aria-selected="false">Garantía</a>
-            <a class="nav-link" id="opcion3-tab" data-toggle="tab" href="#opcion3" role="tab" aria-controls="opcion3"
-                aria-selected="false">Detalles</a>
-            <a class="nav-link" id="opcion4-tab" data-toggle="tab" href="#opcion4" role="tab" aria-controls="opcion4"
-                aria-selected="false">Fotos</a>
-        </nav>
-
-        <div class="tab-content mt-2" id="myTabContent">
-
-            <div class="tab-pane fade show active" id="opcion1" role="tabpanel" aria-labelledby="opcion1-tab">
-                <h3>Depreciación</h3>
-                <p>Los valores de depreciación de los activos son obligatorios.</p>
-
-                <!-- Button trigger modal -->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md">
-                            <button type="submit" class="btn btn-primary d-inline-block" data-toggle="modal"
-                            data-target="#exampleModal">
-                            <i class='bx bx-plus'></i>
-                            Administrar
-                        </button>
-                        <input type="button" class="btn btn-dark d-inline-block mr-3" value="Volver" />
-                    </div>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center" style="padding: 10px; margin-top: 2%;">
+                    <h1 class="page-title" style="margin-bottom: 10px;"><i class='bx bx-extension icon'
+                            style="color: rgba(6, 158, 247, 0.849);"></i> Vista de activos</h1>
                 </div>
             </div>
+        </div>
+        <div class="container">
 
-            <% if (datos.length> 0) { %>
-            <div class="tab-content mt-3" id="myTabContent">
-                <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="userList" class="table table-bordered table-hover table-striped">
-                                            <thead class="thead-light">
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">Fecha de adquisición</th>
-                                                    <th scope="col">Costo Depreciable</th>
-                                                    <th scope="col">Valor de rescate</th>
-                                                    <th scope="col">Vida útil (meses)</th>
-                                                    <th scope="col">depr. Método</th>
+            <nav class="nav nav-tabs mt-2" id="myTabs">
+                <a class="nav-link active" id="opcion1-tab" data-toggle="tab" href="#opcion1" role="tab"
+                    aria-controls="opcion1" aria-selected="true">Depreciación</a>
+                <a class="nav-link" id="opcion2-tab" data-toggle="tab" href="#opcion2" role="tab"
+                    aria-controls="opcion2" aria-selected="false">Garantía</a>
+                <a class="nav-link" id="opcion3-tab" data-toggle="tab" href="#opcion3" role="tab"
+                    aria-controls="opcion3" aria-selected="false">Detalles</a>
+                <a class="nav-link" id="opcion4-tab" data-toggle="tab" href="#opcion4" role="tab"
+                    aria-controls="opcion4" aria-selected="false">Fotos</a>
+            </nav>
 
-                                                </tr>
-                                            </thead>
+            <div class="tab-content mt-2" id="myTabContent">
 
-                                            <tbody>
-                                                <% for (let i=0; i < datos.length; i++) { %>
-                                                <tr>
-                                                    <td scope="col">
-                                                        <%= i+1 %>
-                                                    </td>
-                                                    <td scope="col">
-                                                        <%= datos[i].fecha%>
-                                                    </td>
-                                                    <td scope="col">
-                                                        <%= datos[i].costoD%>
-                                                    </td>
-                                                    <td scope="col">
-                                                        <%= datos[i].Vres%>
-                                                    </td>
-                                                    <td scope="col">
-                                                        <%= datos[i].VidaU%>
-                                                    </td>
-                                                    <td scope="col">
-                                                        <%= datos[i].metodo%>
-                                                    </td>
+                <div class="tab-pane fade show active" id="opcion1" role="tabpanel" aria-labelledby="opcion1-tab">
+                    <h3>Depreciación</h3>
+                    <p>Los valores de depreciación de los activos son obligatorios.</p>
 
-                                                </tr>
-                                                <%}%>
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <br>
-                    <!--GRÁFICA ESTADISTICA-->
+                    <!-- Button trigger modal -->
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-6">
-                                <h2>Estadísticas anuales de depreciación</h2>
-                                
+                            <div class="col-md">
+                                <button type="submit" class="btn btn-primary d-inline-block" data-toggle="modal"
+                                    data-target="#exampleModal">
+                                    <i class='bx bx-plus'></i>
+                                    Administrar
+                                </button>
+                                <input type="button" class="btn btn-dark d-inline-block mr-3" value="Volver" />
                             </div>
                         </div>
-                        <div class="grafica" id="myfirstchart"></div>
                     </div>
-                    <script type="text/javascript" src="libs/lineas.js"></script>
-                    <br>
-                    <%}%>
-                        <% if(data.length> 0) { %>
-                            <!--SEGUNDA TABLA-->
-                            <div class="tab-content mt-3" id="myTabContent">
-                                <div class="tab-pane fade show active" id="list" role="tabpanel"
-                                    aria-labelledby="list-tab">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="table-responsive">
-                                                <table id="userList"
-                                                    class="table table-bordered table-hover table-striped">
-                                                    <thead class="thead-light">
+
+                    <% if (datos.length> 0) { %>
+                        <div class="tab-content mt-3" id="myTabContent">
+                            <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table id="userList" class="table table-bordered table-hover table-striped">
+                                                <thead class="thead-light">
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Fecha de adquisición</th>
+                                                        <th scope="col">Costo Depreciable</th>
+                                                        <th scope="col">Valor de rescate</th>
+                                                        <th scope="col">Vida útil (meses)</th>
+                                                        <th scope="col">depr. Método</th>
+
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <% for (let i=0; i < datos.length; i++) { %>
                                                         <tr>
-                                                            <th scope="col">#</th>
-                                                            <th scope="col">Año</th>
-                                                            <th scope="col">Gasto de depreciación</th>
-                                                            <th scope="col">Depreciación acumulada al final del año</th>
-                                                            <th scope="col">Valor en libros a final del año</th>
+                                                            <td scope="col">
+                                                                <%= i+1 %>
+                                                            </td>
+                                                            <td scope="col">
+                                                                <%= datos[i].fecha%>
+                                                            </td>
+                                                            <td scope="col">
+                                                                <%= datos[i].costoD%>
+                                                            </td>
+                                                            <td scope="col">
+                                                                <%= datos[i].Vres%>
+                                                            </td>
+                                                            <td scope="col">
+                                                                <%= datos[i].VidaU%>
+                                                            </td>
+                                                            <td scope="col">
+                                                                <%= datos[i].metodo%>
+                                                            </td>
 
                                                         </tr>
-                                                    </thead>
-
-                                                    <tbody>
-                                                        <tr>
-                                                            <th scope="row"></th>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td><%= data[0].tota %></td>
-        
-                                                        </tr>
-                                                        <% for (let i=data.length-1; i >= 0; i--) {  %>
-                                                            <tr>
-                                                                <td scope="col">
-                                                                    <%= i+1 %>
-                                                                </td>
-                                                                <td scope="col">
-                                                                    <%= data[i].year%>
-                                                                </td>
-                                                                <td scope="col">
-                                                                    <%= data[i].depre%>
-                                                                </td>
-                                                                <td scope="col">
-                                                                    <%= data[i].depreacu%>
-                                                                </td>
-                                                                <td scope="col">
-                                                                    <%= data[i].value%>
-                                                                </td>                                                               
-                                                            </tr>
-                                                            <%}%>
-
-                                                    </tbody>
-                                                </table>
-                                            </div>
-
+                                                        <%}%>
+                                                </tbody>
+                                            </table>
                                         </div>
 
                                     </div>
+
                                 </div>
-
-                            </div>
-
-            </div>
-            <br>
-            <%}%>
-
-
-            <div class="tab-pane fade" id="opcion2" role="tabpanel" aria-labelledby="opcion2-tab">
-                <h3>Garantía</h3>
-
-                <!-- Button trigger modal -->
-                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#nuevoModal"><i
-                        class='bx bx-plus'></i>
-                    Agregar nuevo
-                </button>
-
-                <div class="tab-content mt-3" id="myTabContent">
-                    <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
-                        <div class="card">
-                            <div class="card-header d-flex justify-content-between align-items-center">
-                                <h4 class="mb-0">Listado</h4>
-                                <div>
-                                    <input type="button" class="btn btn-dark mr-3" value="Volver" />
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table id="userList" class="table table-bordered table-hover table-striped">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Fecha de adquisición</th>
-                                                <th scope="col">Fecha de caducidad</th>
-                                                <th scope="col">Notas</th>
-                                                <th scope="col">Acción</th>
-
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>08/08/2023</td>
-                                                <td>2</td>
-                                                <td>-</td>
-                                                <td>
-                                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                                </td>
-
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-
                             </div>
 
                         </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- DETALLES DE ACTIVOS -->
-            <div class="tab-pane fade" id="opcion3" role="tabpanel" aria-labelledby="opcion3-tab">
-
-                <div class="card" id="crop-avatar">
-                    <form id="profile_form" action="/profile" autocomplete="off" class="form-horizontal">
-                        <div class="card-body">
-                            <div class="form_section">
-                                <div class="form-title">
-                                    "Nombre de activo"
-                                </div>
-                                <br>
-
-                                <div class="form-group row">
-                                    <div class="col-lg-3 col-md-3">
-                                        <img src="foto3.jpg" class="img-thumbnail img-fluid"
-                                            style="width: 167px; height: 167px" alt="...">
-                                    </div>
-                                    <div class="col-lg-4 col-md-6">
-                                        <table class="table table-bordered table-view-detail table-sm mb-lg-0"
-                                            role="presentation" aria-label="Asset Details">
-                                            <tbody>
-                                                <tr>
-                                                    <td class="label_col">ID activo</td>
-                                                    <td class="detail_col fw-bold">---------</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="label_col">Fecha de compra</td>
-                                                    <td class="detail_col fw-bold">---------</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="label_col">Costo</td>
-                                                    <td class="detail_col fw-bold">---------</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="label_col">Marca</td>
-                                                    <td class="detail_col fw-bold">---------</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="label_col">Modelo</td>
-                                                    <td class="detail_col fw-bold">---------</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="col-lg-5 col-md-12">
-                                        <table class="table table-bordered table-view-detail table-sm mb-lg-0"
-                                            role="presentation" aria-label="Asset Details">
-                                            <tbody>
-                                                <tr>
-                                                    <td class="label_col">Sitio</td>
-                                                    <td class="detail_col fw-bold">-------</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="label_col">Ubicación</td>
-                                                    <td class="detail_col fw-bold">-------</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="label_col">Categoría</td>
-                                                    <td class="detail_col fw-bold">-------</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="label_col">Sitio</td>
-                                                    <td class="detail_col fw-bold">-------</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-
-                <div class="card" id="crop-avatar">
-                    <form id="profile_form" action="/profile" autocomplete="off" class="form-horizontal">
-                        <div class="card-body">
-                            <div class="form_section">
-                                <div class="form-title">
-                                    <i class="bx bx-extension icon" style="color: rgba(6, 158, 247, 0.849);"></i>
-                                    Detalles de activos
-                                </div>
-                                <br>
-
-                                <div class="form-group row">
-                                    <div class="col-lg-3 col-md-4">
-                                        <h6 class="fw-normal">Mantenimientos</h6>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6">
-                                        <table class="table table-bordered table-view-detail table-sm mb-lg-0"
-                                            role="presentation" aria-label="Asset Details">
-                                            <tbody>
-                                                <tr>
-                                                    <td class="label_col">Total gastos</td>
-                                                    <td class="detail_col fw-bold">---------</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="col-lg-5 col-md-12">
-                                        <table class="table table-bordered table-view-detail table-sm mb-lg-0"
-                                            role="presentation" aria-label="Asset Details">
-                                            <tbody>
-                                                <tr>
-                                                    <td class="label_col">Comprado de</td>
-                                                    <td class="detail_col fw-bold">Ana Paola</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <div class="col-lg-3 col-md-4">
-                                        <h6 class="fw-normal">Depreciación</h6>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6">
-                                        <table class="table table-bordered table-view-detail table-sm mb-lg-0"
-                                            aria-label="Asset Details" role="presentation">
-                                            <tbody>
-                                                <tr>
-                                                    <td class="label_col">Costo Depreciable</td>
-                                                    <td class="detail_col fw-bold">$43,000.00</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="label_col">Valor del rescate</td>
-                                                    <td class="detail_col fw-bold">$6,000.00</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="label_col">Fecha de adquisición</td>
-                                                    <td class="detail_col fw-bold">06/06/2023</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="col-lg-5 col-md-12">
-                                        <table class="table table-bordered table-view-detail table-sm mb-lg-0"
-                                            aria-label="Asset Details" role="presentation">
-                                            <tbody>
-                                                <tr>
-                                                    <td class="label_col">Vida útil (años)</td>
-                                                    <td class="detail_col fw-bold">10</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="label_col">depr. Método</td>
-                                                    <td class="detail_col fw-bold">Línea Recta</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <div class="col-lg-3 col-md-4">
-                                        <h6 class="fw-normal">Revalorización</h6>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6">
-                                        <table class="table table-bordered table-view-detail table-sm mb-lg-0"
-                                            aria-label="Asset Details" role="presentation">
-                                            <tbody>
-                                                <tr>
-                                                    <td class="label_col">Valor de revaluo</td>
-                                                    <td class="detail_col fw-bold">$43,000.00</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <br>
-        </div>
-    </div>
-
-
-    <!-- Modal -->
-    <form action="/depre" method="post">
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Administrar la depreciación de activos</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
+                        <br>
+                        <!--GRÁFICA ESTADISTICA-->
                         <div class="container">
-                            <div class="mb-3 row">
-                                <label for="basic-url" class="col-sm-4 col-form-label">Costo depreciable</label>
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <span class="input-group-text">Bs</span>
-                                        <input type="text" name="Cdepreciable" id="Cdepreciable" class="form-control"
-                                            aria-describedby="basic-addon3 basic-addon4">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h2>Estadísticas anuales de depreciación</h2>
+
+                                </div>
+                            </div>
+                            <div class="grafica" id="myfirstchart"></div>
+                        </div>
+                        <script type="text/javascript" src="libs/lineas.js"></script>
+                        <br>
+                        <%}%>
+                            <% if(data.length> 0) { %>
+                                <!--SEGUNDA TABLA-->
+                                <div class="tab-content mt-3" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="list" role="tabpanel"
+                                        aria-labelledby="list-tab">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table id="userList"
+                                                        class="table table-bordered table-hover table-striped">
+                                                        <thead class="thead-light">
+                                                            <tr>
+                                                                <th scope="col">#</th>
+                                                                <th scope="col">Año</th>
+                                                                <th scope="col">Gasto de depreciación</th>
+                                                                <th scope="col">Depreciación acumulada al final del año
+                                                                </th>
+                                                                <th scope="col">Valor en libros a final del año</th>
+
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody>
+                                                            <tr>
+                                                                <th scope="row"></th>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td>
+                                                                    <%= data[0].tota %>
+                                                                </td>
+
+                                                            </tr>
+                                                            <% for (let i=data.length-1; i>= 0; i--) { %>
+                                                                <tr>
+                                                                    <td scope="col">
+                                                                        <%= i+1 %>
+                                                                    </td>
+                                                                    <td scope="col">
+                                                                        <%= data[i].year%>
+                                                                    </td>
+                                                                    <td scope="col">
+                                                                        <%= data[i].depre%>
+                                                                    </td>
+                                                                    <td scope="col">
+                                                                        <%= data[i].depreacu%>
+                                                                    </td>
+                                                                    <td scope="col">
+                                                                        <%= data[i].value%>
+                                                                    </td>
+                                                                </tr>
+                                                                <%}%>
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
                                     </div>
-                                    <div class="form-text" id="basic-addon4">Incluyendo impuesto sobre las ventas, flete
-                                        e
-                                        instalación.
+
+                                </div>
+
+                </div>
+                <br>
+                <%}%>
+
+
+                    <div class="tab-pane fade" id="opcion2" role="tabpanel" aria-labelledby="opcion2-tab">
+                        <h3>Garantía</h3>
+
+                        <!-- Button trigger modal -->
+                        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#nuevoModal"><i
+                                class='bx bx-plus'></i>
+                            Agregar nuevo
+                        </button>
+
+                        <div class="tab-content mt-3" id="myTabContent">
+                            <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
+                                <div class="card">
+                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                        <h4 class="mb-0">Listado</h4>
+                                        <div>
+                                            <input type="button" class="btn btn-dark mr-3" value="Volver" />
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table id="userList" class="table table-bordered table-hover table-striped">
+                                                <thead class="thead-light">
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Fecha de adquisición</th>
+                                                        <th scope="col">Fecha de caducidad</th>
+                                                        <th scope="col">Notas</th>
+                                                        <th scope="col">Acción</th>
+
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <% for (let i=0; i < garantia.length; i++) { %>
+                                                        <tr>
+                                                        <th scope="row"><%= i+1 %></th>
+                                                        <td><%= garantia[i].adquirido.substring(0,10)%></td>
+                                                        <td><%= garantia[i].caducidad.substring(0,10)%></td>
+                                                        <td><%= garantia[i].descripcion%></td>
+                                                        <td>
+                                                            <form action="/DeleteG" method="post">
+                                                                <input type="hidden" name="id" value="<%= garantia[i].id %>">        
+                                                                <button class="btn btn-outline-danger bi bi-trash"
+                                                                    type="submit">Eliminar</button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                        <% } %>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- DETALLES DE ACTIVOS -->
+                    <div class="tab-pane fade" id="opcion3" role="tabpanel" aria-labelledby="opcion3-tab">
+
+                        <div class="card" id="crop-avatar">
+                            <form id="profile_form" action="/profile" autocomplete="off" class="form-horizontal">
+                                <div class="card-body">
+                                    <div class="form_section">
+                                        <div class="form-title">
+                                            <%= Activo[0].descripcion %>
+                                        </div>
+                                        <br>
+
+                                        <div class="form-group row">
+                                            <div class="col-lg-3 col-md-3">
+                                                <img src="https://apisi2.up.railway.app/api/actiI/<%= id %>" class="img-thumbnail img-fluid"
+                                                    style="width: 167px; height: 167px" alt="...">
+                                            </div>
+                                            <div class="col-lg-4 col-md-6">
+                                                <table class="table table-bordered table-view-detail table-sm mb-lg-0"
+                                                    role="presentation" aria-label="Asset Details">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="label_col">ID activo</td>
+                                                            <td class="detail_col fw-bold"><%= id %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="label_col">Fecha de compra</td>
+                                                            <td class="detail_col fw-bold"><%= Activo[0].diacompra.substring(0,10) %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="label_col">Costo</td>
+                                                            <td class="detail_col fw-bold"><%= Activo[0].costo %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="label_col">Marca</td>
+                                                            <td class="detail_col fw-bold"><%= Activo[0].marca %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="label_col">Modelo</td>
+                                                            <td class="detail_col fw-bold"><%= Activo[0].modelo %></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <% if( ubi.length > 0 ) {%>
+                                            <div class="col-lg-5 col-md-12">
+                                                <table class="table table-bordered table-view-detail table-sm mb-lg-0"
+                                                    role="presentation" aria-label="Asset Details">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="label_col">Sitio</td>
+                                                            <td class="detail_col fw-bold"><%= ubi[0].sitio %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="label_col">Ubicación</td>
+                                                            <td class="detail_col fw-bold"><%= ubi[0].localizacion %></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="label_col">Departamento</td>
+                                                            <td class="detail_col fw-bold"><%= ubi[0].departamento %></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <%}%>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
+                        </div>
 
-                            <div class="mb-3 row">
-                                <label for="basic-url" class="col-sm-4 col-form-label">Valor del rescate</label>
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <span class="input-group-text">Bs</span>
-                                        <span class="input-group-text">0.00</span>
-                                        <input type="text" name="VRescate" id="VRescate" class="form-control"
-                                            aria-label="Dollar amount (with dot and two decimal places)">
+
+                        <div class="card" id="crop-avatar">
+                            <form id="profile_form" action="/profile" autocomplete="off" class="form-horizontal">
+                                <div class="card-body">
+                                    <div class="form_section">
+                                        <div class="form-title">
+                                            <i class="bx bx-extension icon"
+                                                style="color: rgba(6, 158, 247, 0.849);"></i>
+                                            Detalles de activos
+                                        </div>
+                                        <br>
+
+                                        <div class="form-group row">
+                                            <div class="col-lg-3 col-md-4">
+                                                <h6 class="fw-normal">Mantenimientos</h6>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6">
+                                                <table class="table table-bordered table-view-detail table-sm mb-lg-0"
+                                                    role="presentation" aria-label="Asset Details">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="label_col">Total gastos</td>
+                                                            <td class="detail_col fw-bold"><%= total %></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-lg-5 col-md-12">
+                                                <table class="table table-bordered table-view-detail table-sm mb-lg-0"
+                                                    role="presentation" aria-label="Asset Details">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="label_col">Comprado de</td>
+                                                            <td class="detail_col fw-bold"><%= Activo[0].lugarcompra %></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group row">
+                                            <div class="col-lg-3 col-md-4">
+                                                <h6 class="fw-normal">Revalorización</h6>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6">
+                                                <table class="table table-bordered table-view-detail table-sm mb-lg-0"
+                                                    aria-label="Asset Details" role="presentation">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="label_col">Valor de revaluo</td>
+                                                            <td class="detail_col fw-bold">------</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="mb-3 row">
-                                <label for="formGroupExampleInput" class="col-sm-4 col-form-label">Vida útil
-                                    (Años)</label>
-                                <div class="col-sm-8">
-                                    <input type="text" name="Vutil" id="Vutil" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="mb-3 row">
-                                <label for="formGroupExampleInput" class="col-sm-4 col-form-label">Método de
-                                    depreciación</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="formGroupExampleInput"
-                                        placeholder="Línea Recta" readonly>
-                                </div>
-                            </div>
-
-                            <div class="mb-3 row">
-                                <label for="basic-url" class="col-sm-4 col-form-label">Fecha de adquisición</label>
-                                <div class="col-sm-8">
-                                    <input type="date" name="fecha" id="fecha" class="form-control">
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary" onclick="calcular()">Actualizar</button>
-                    </div>
-                </div>
+                    <br>
             </div>
         </div>
 
-    </form>
 
+        <!-- Modal -->
+        <form action="/depre" method="post">
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Administrar la depreciación de activos</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="mb-3 row">
+                                    <label for="basic-url" class="col-sm-4 col-form-label">Costo depreciable</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group">
+                                            <span class="input-group-text">Bs</span>
+                                            <input type="text" name="Cdepreciable" id="Cdepreciable"
+                                                class="form-control" aria-describedby="basic-addon3 basic-addon4">
+                                        </div>
+                                        <div class="form-text" id="basic-addon4">Incluyendo impuesto sobre las ventas,
+                                            flete
+                                            e
+                                            instalación.
+                                        </div>
+                                    </div>
+                                </div>
 
-    <!-- Modal Nuevo-->
+                                <div class="mb-3 row">
+                                    <label for="basic-url" class="col-sm-4 col-form-label">Valor del rescate</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group">
+                                            <span class="input-group-text">Bs</span>
+                                            <span class="input-group-text">0.00</span>
+                                            <input type="text" name="VRescate" id="VRescate" class="form-control"
+                                                aria-label="Dollar amount (with dot and two decimal places)">
+                                        </div>
+                                    </div>
+                                </div>
 
-    <div class="modal fade" id="nuevoModal" tabindex="-1" role="dialog" aria-labelledby="nuevoModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="nuevoModalLabel">Garantía de activos</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
+                                <div class="mb-3 row">
+                                    <label for="formGroupExampleInput" class="col-sm-4 col-form-label">Vida útil
+                                        (Años)</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="Vutil" id="Vutil" class="form-control">
+                                    </div>
+                                </div>
 
-                        <div class="mb-3 row">
-                            <label for="formGroupExampleInput" class="col-sm-4 col-form-label">Longitud (meses)</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+                                <div class="mb-3 row">
+                                    <label for="formGroupExampleInput" class="col-sm-4 col-form-label">Método de
+                                        depreciación</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="formGroupExampleInput"
+                                            placeholder="Línea Recta" readonly>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 row">
+                                    <label for="basic-url" class="col-sm-4 col-form-label">Fecha de adquisición</label>
+                                    <div class="col-sm-8">
+                                        <input type="date" name="fecha" id="fecha" class="form-control">
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="mb-3 row">
-                            <label for="basic-url" class="col-sm-4 col-form-label">Fecha de caducidad</label>
-                            <div class="col-sm-8">
-                                <input type="date" name="fecha" class="form-control">
-                            </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <input type="hidden" name="id" value="<%= id %>">
+                            <button type="submit" class="btn btn-primary" onclick="calcular()">Actualizar</button>
                         </div>
-
-                        <div class="mb-3 row">
-                            <label for="basic-url" class="col-sm-4 col-form-label">Notas</label>
-                            <div class="col-sm-8">
-                                <textarea class="form-control" placeholder="Leave a comment here"
-                                    id="floatingTextarea"></textarea>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
+            </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Guardar</button>
+        </form>
+
+        <form action="/Agarantia" method="post">
+            <div class="modal fade" id="nuevoModal" tabindex="-1" role="dialog" aria-labelledby="nuevoModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="nuevoModalLabel">Garantía de activos</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+
+                                <div class="mb-3 row">
+                                    <label for="basic-url" class="col-sm-4 col-form-label">Fecha de adquisición</label>
+                                    <div class="col-sm-8">
+                                        <input type="date" name="adquirido" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 row">
+                                    <label for="basic-url" class="col-sm-4 col-form-label">Fecha de caducidad</label>
+                                    <div class="col-sm-8">
+                                        <input type="date" name="caducidad" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 row">
+                                    <label for="basic-url" class="col-sm-4 col-form-label">Notas</label>
+                                    <div class="col-sm-8">
+                                        <textarea class="form-control" placeholder="Leave a comment here"
+                                            id="floatingTextarea" name="descripcion"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <input type="hidden" value="<%= id %>" name="id">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </form>
 
 
 
-
-</body>
+    </body>
 
 </html>

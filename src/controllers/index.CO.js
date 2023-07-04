@@ -8,17 +8,93 @@ export const slash = (req, res) => {
 
 
 export const Renderde = async(req, res) => {
-  const Activo = await fetch(`https://apisi2.up.railway.app/api/acti/${req.body.id}`);
-  const garantia = await fetch(`https://apisi2.up.railway.app/api/Gacti/${req.body.id}`);
-  const id = req.body.id
+  const Activo = await fetch(`https://apisi2.up.railway.app/api/acti/${req.query.id}`,{
+    method: 'GET', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+  }).then((respueta) => {
+    return respueta.json()
+  });
+  const ubi = await fetch(`https://apisi2.up.railway.app/api/Gactivo/${req.query.id}`,{
+    method: 'GET', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+  }).then((respueta) => {
+    return respueta.json()
+  });
+  const mant = await fetch(`https://apisi2.up.railway.app/api/GM/${req.query.id}`,{
+    method: 'GET', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+  }).then((respueta) => {
+    return respueta.json()
+  });
+  const garantia = await fetch(`https://apisi2.up.railway.app/api/Gacti/${req.query.id}`,{
+    method: 'GET', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+  }).then((respueta) => {
+    return respueta.json()
+  });
+  var total = 0
+  for (const objeto of mant) {
+    total = total + objeto.costo 
+  }
+  const id = req.query.id
   const datos = []
   const data = []
-  res.render('depre.ejs', { datos, data, Activo, garantia,id });
+  res.render('depre.ejs', { datos, data, Activo, garantia,id,ubi,total });
 };
 
 export const deprecalculo = async(req, res) => {
-  const Activo = await fetch(`https://apisi2.up.railway.app/api/acti/${req.body.id}`);
-  const garantia = await fetch(`https://apisi2.up.railway.app/api/Gacti/${req.body.id}`);
+  const Activo = await fetch(`https://apisi2.up.railway.app/api/acti/${req.body.id}`,{
+    method: 'GET', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+  }).then((respueta) => {
+    return respueta.json()
+  });
+  const ubi = await fetch(`https://apisi2.up.railway.app/api/Gactivo/${req.body.id}`,{
+    method: 'GET', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+  }).then((respueta) => {
+    return respueta.json()
+  });
+  const mant = await fetch(`https://apisi2.up.railway.app/api/GM/${req.body.id}`,{
+    method: 'GET', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+  }).then((respueta) => {
+    return respueta.json()
+  });
+  const garantia = await fetch(`https://apisi2.up.railway.app/api/Gacti/${req.body.id}`,{
+    method: 'GET', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+  }).then((respueta) => {
+    return respueta.json()
+  });
+  var total = 0
+  for (const objeto of mant) {
+    total = total + objeto.costo 
+  }
+  const id = req.body.id
   let data = []
 
   const fecha = req.body.fecha
@@ -38,7 +114,7 @@ export const deprecalculo = async(req, res) => {
   }
 
 
-  res.render('depre.ejs', { datos, data,Activo, garantia });
+  res.render('depre.ejs', {datos, data, Activo, garantia,id,ubi,total});
 };
 
 
@@ -197,7 +273,6 @@ export const home = async(req, res) => {
   var total = 0
   var totalf = 0
   var y = new Date().getFullYear();
-  console.log(y)
 for (const objeto of data) {
   if(objeto.diacompra.substring(0,4) == y){
     totalf = totalf + objeto.costo

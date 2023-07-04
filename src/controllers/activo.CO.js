@@ -253,3 +253,35 @@ export const updateReserva = async (req, res) => {
     }
 };
 
+
+export const crearGarantia = async (req, res) => {
+    try {
+        const { id, adquirido, caducidad, descripcion } = req.body
+        const response = await fetch(`https://apisi2.up.railway.app/api/acti/gar`, {
+            method: 'post',
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', // include, *same-origin, omit
+            body: JSON.stringify({id, adquirido, caducidad, descripcion}),
+            headers: { 'Content-Type': 'application/json' },
+            redirect: 'follow', // manual, *follow, error
+            referrerPolicy: 'no-referrer',
+        });
+        res.redirect('/activo')
+    } catch (error) {
+        console.error(error);
+        res.send('ERROR');
+    }
+};
+
+export const deleteG = async (req, res) => {
+    try {
+        const response = await fetch(`https://apisi2.up.railway.app/api/acti/gar/${req.body.id}`, {
+            method: 'delete'
+        });
+        res.redirect('/activo')
+    } catch (error) {
+        console.error(error);
+        res.send('ERROR');
+    }
+};
