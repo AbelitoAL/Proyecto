@@ -17,7 +17,7 @@ export const createMantenimiento = async (req, res) => {
             headers: { 'Content-Type': 'application/json' }
         });
 
-        const mensaje = "Se Creo un mantenimiento para el siguiente activo: " + idaf + "con la siguiente descripcion" + descripcion
+        const mensaje = "Se Creo un mantenimiento"
         const culpable = req.user.ci
         const respons = await fetch('https://apisi2.up.railway.app/bita/A', {
             method: 'post',
