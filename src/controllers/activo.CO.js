@@ -19,7 +19,7 @@ export const createActivo = async (req, res) => {
         formData.append('marca', req.body.marca);
         formData.append('modelo', req.body.modelo);
         formData.append('serial', req.body.serial);
-        formData.append('img', new Blob([foto]), req.file.originalname);
+        formData.append('img', Buffer.from(foto), { filename: req.file.originalname });
         const response = await axios.post('https://apisi2.up.railway.app/api/acti', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
