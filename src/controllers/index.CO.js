@@ -220,6 +220,9 @@ export const revalor = async(req, res) => {
   const valorenlibro = Cdepreciable - d
   console.log("valor en libro = "+ valorenlibro)
   var cal = valorenlibro - valor_ras
+  if(cal < 0 ){
+    cal = cal * (-1)
+  }
   console.log("incremento por revaluacion= " + cal)
   if(valor_ras > valorenlibro){
     Cdepreciable = Cdepreciable + cal
