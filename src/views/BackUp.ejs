@@ -72,9 +72,7 @@
                                         <td scope="col">
                                             <%= response[i].archivo%>
                                         </td>
-                                        <td scope="col">
-                                            <%= response[i].culpable%>
-                                        </td>     
+    
                                         <td>
                                             <form action="/Restore" method="post">
                                                 <input type="hidden" name="id" value="<%= response[i].id %>">
