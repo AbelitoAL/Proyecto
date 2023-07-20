@@ -3,6 +3,7 @@ import fs from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import fetch from "node-fetch";
+import FormData from 'form-data';
 
 export const createActivo = async (req, res) => {
     try {
