@@ -25,7 +25,7 @@ Acti.get('/crearActivo', renderCreateActivo)
 Acti.post('/eliminarActivo',logeado, deleteActivo)
 
 Acti.post('/renderActualizarActivo',logeado,renderUpdateActivo)
-Acti.post('/actualizarActivo',logeado,updateActivo)
+Acti.post('/actualizarActivo',upload.single('img'),updateActivo)
 
 Acti.get('/activo',logeado, getActivos)
 

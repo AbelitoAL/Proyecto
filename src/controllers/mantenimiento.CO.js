@@ -33,7 +33,9 @@ export const createMantenimiento = async (req, res) => {
 };
 
 export const renderCreateMantenimiento = async (req, res) => {
-    res.render('crearMantenimiento')
+    const response = await fetch('https://apisi2.up.railway.app/api/acti');
+        const data = await response.json();
+    res.render('crearMantenimiento',{activosFijos: data})
 }
 
 export const getMantenimientos = async (req, res) => {

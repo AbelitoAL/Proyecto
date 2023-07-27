@@ -32,7 +32,7 @@ export const createActivo = async (req, res) => {
             body: JSON.stringify({ mensaje, culpable }),
             headers: { 'Content-Type': 'application/json' }
         });
-        res.redirect('/crearActivo');
+        res.redirect('/activo');
     } catch (error) {
         console.error(error);
         res.send('ERROR');
@@ -105,14 +105,27 @@ export const renderUpdateActivo = async (req, res) => {
 
 export const updateActivo = async (req, res) => {
     try {
-        const { id, descripcion, diaCompra, costo, lugarCompra, marca, modelo, serial, foto } = req.body;
-        const response = await fetch(`https://apisi2.up.railway.app/api/acti/${req.body.id}`, {
-            method: 'put',
-            body: JSON.stringify({ descripcion, diaCompra, costo, lugarCompra, marca, modelo, serial, foto }),
-            headers: { 'Content-Type': 'application/json' }
+        const __dirname = dirname(fileURLToPath(import.meta.url));
+        const imagePath = join(__dirname, '../public/img', req.file.filename);
+        const foto = fs.readFileSync(imagePath);
+        const formData = new FormData();
+        formData.append('id', req.body.id);
+        formData.append('descripcion', req.body.descripcion);
+        formData.append('diaCompra', req.body.diaCompra);
+        formData.append('costo', req.body.costo);
+        formData.append('lugarCompra', req.body.lugarCompra);
+        formData.append('marca', req.body.marca);
+        formData.append('modelo', req.body.modelo);
+        formData.append('serial', req.body.serial);
+        formData.append('img', Buffer.from(foto), { filename: req.file.originalname });
+        const response = await axios.post(`https://apisi2.up.railway.app/api/acti/${req.body.id}`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
         });
+       
 
-        const mensaje = "Se genero Actualizo el activo: " + req.body.id + " con nombre: " + descripcion
+        const mensaje = "Se genero Actualizo el activo: " + req.body.id + " con nombre: " + req.body.descripcion
         const culpable = req.user.ci
         const respons = await fetch('https://apisi2.up.railway.app/bita/A', {
             method: 'post',
@@ -168,7 +181,7 @@ export const createReserva = async (req, res) => {
             headers: { 'Content-Type': 'application/json' }
         });
 
-        const mensaje = "Se Realizo una Reserva para el Activo: " + idActivoFijo + "para la siguiente Fecha: " + req.body.fecha
+        const mensaje = "Se Realizo una Reserva para el Activo: " + nuevaReserva.idActivoFijo + "para la siguiente Fecha: " + req.body.fecha
         const culpable = req.user.ci
         const respons = await fetch('https://apisi2.up.railway.app/bita/A', {
             method: 'post',
