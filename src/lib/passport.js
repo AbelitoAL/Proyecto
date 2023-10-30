@@ -11,6 +11,7 @@ passport.use('local.login', new Strategy.Strategy({
     passReqToCallback: true
 }, async (req, UsuI, pass, done) => {
     try {
+        console.log(UsuI)
         const response = await fetch(`https://apisi2.up.railway.app/api/usuar/${UsuI}`, {
             method: 'GET', // *GET, POST, PUT, DELETE, etc.
             mode: 'cors', // no-cors, *cors, same-origin
