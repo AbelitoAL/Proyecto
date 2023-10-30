@@ -62,7 +62,6 @@ export const Renderde = async(req, res) => {
   if(depre.length > 0){
   const fecha = depre[0].fecha.substring(0,10)
   var Naño = parseInt(fecha.slice(0, -6))
-  var Nmes = parseInt(fecha.slice(5, -3))
   const Vutil = parseInt(depre[0].vida_util)
   const Cdepreciable = parseInt(depre[0].costo_dep)
   const VRescate = parseInt(depre[0].valor_res)
@@ -210,15 +209,12 @@ export const revalor = async(req, res) => {
     total = total + objeto.costo 
   }
   const id = req.body.id
-  console.log(req.body.valor_ras)
   var valor_ras = parseInt(req.body.valor_ras)
   const Vutil = parseInt(depre[0].vida_util)
   var Cdepreciable = parseInt(depre[0].costo_dep)
   const VRescate = parseInt(depre[0].valor_res)
   var d = Math.floor((Cdepreciable - VRescate) / Vutil)
-  console.log("depre = " + d)
   const valorenlibro = Cdepreciable - d
-  console.log("valor en libro = "+ valorenlibro)
   var cal = valorenlibro - valor_ras
   if(cal < 0 ){
     cal = cal * (-1)
